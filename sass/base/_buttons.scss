@@ -1,0 +1,27 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    color: $color-text-button;
+    background-color: $color-button;
+    cursor: pointer;
+    &_big {
+        width: 90px !important;
+    }
+    &_darken {
+        background-color: $color-button-dark;
+    }
+    &_up {
+        position: relative;
+        top: -7px;
+        left: -5px;
+        font-size: 1.2rem;
+    }
+    &_space {
+        width: 215px;
+    }
+}
