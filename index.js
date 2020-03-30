@@ -5,5 +5,9 @@ buttons.forEach((e) => {
   });
   e.addEventListener('mouseup', (element) => {
     element.target.classList.remove('button_active');
-	});
+  });
+  e.addEventListener('click', (element) => {
+    const textarea = document.querySelector('.text-input');
+    textarea.value += element.target.innerText;
+  });
 });
