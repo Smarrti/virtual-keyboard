@@ -8,6 +8,10 @@ buttons.forEach((e) => {
   });
   e.addEventListener('click', (element) => {
     const textarea = document.querySelector('.text-input');
-    textarea.value += element.target.innerText;
+    if (element.target.innerText.length === 1) {
+      textarea.value += element.target.innerText;
+    } else if (element.target.innerText === '') {
+      textarea.value += ' ';
+    }
   });
 });
