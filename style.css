@@ -14,6 +14,7 @@ html {
   color: white;
   background-color: #424242;
   cursor: pointer;
+  transition: all 0.3s;
 }
 .button_big {
   width: 90px !important;
@@ -29,6 +30,13 @@ html {
 }
 .button_space {
   width: 215px;
+}
+.button:hover {
+  background-color: #6e9683;
+}
+.button_active:hover {
+  background-color: #07e67a;
+  border-radius: 50%;
 }
 
 .text-input {

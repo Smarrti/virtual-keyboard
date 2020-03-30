@@ -9,6 +9,7 @@
     color: $color-text-button;
     background-color: $color-button;
     cursor: pointer;
+    transition: all 0.3s;
     &_big {
         width: 90px !important;
     }
@@ -23,5 +24,12 @@
     }
     &_space {
         width: 215px;
+    }
+    &:hover {
+        background-color: #6e9683;
+    }
+    &_active:hover {
+        background-color: #07e67a;
+        border-radius: 50%;
     }
 }
