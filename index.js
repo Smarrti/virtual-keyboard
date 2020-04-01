@@ -89,6 +89,7 @@ function deleteKeyboard() {
 const body = document.querySelector('body');
 const pushedButtons = [];
 body.addEventListener('keydown', (e) => {
+  e.preventDefault();
   pushedButtons.push(e.code);
   const selectedButton = document.querySelector(`.k${e.which}`);
   selectedButton.classList.add('button_active');
@@ -97,7 +98,8 @@ body.addEventListener('keydown', (e) => {
     selectedButton.classList.remove('button_active');
   }, 200);
 });
-body.addEventListener('keyup', () => {
+body.addEventListener('keyup', (e) => {
+  e.preventDefault();
   if ((pushedButtons.indexOf('ShiftLeft') !== -1) && (pushedButtons.indexOf('AltLeft') !== -1)) {
     deleteKeyboard();
     if (localStorage.getItem('language') === 'ru') {
