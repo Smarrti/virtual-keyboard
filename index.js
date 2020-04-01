@@ -21,7 +21,7 @@ function getCode(symbol) {
   return arr[0][1];
 }
 
-function generateKeyboard(keyboardRows) {
+function generateKeyboard(keyboardRows, onShift) {
   const keyboard = document.createElement('div');
   keyboard.classList.add('keyboard');
   keyboardRows.forEach((e) => {
@@ -33,12 +33,11 @@ function generateKeyboard(keyboardRows) {
       if (Array.isArray(element)) {
         button.classList.add('button_double');
         button.classList.add(`k${getCode(element[0])}`);
-        const buttonUp = document.createElement('span');
-        buttonUp.classList.add('button_up');
-        buttonUp.classList.add('button_up_hidden');
-        buttonUp.innerText = [element[1]];
-        button.appendChild(buttonUp);
-        button.innerHTML += element[0];
+        if (onShift) {
+          button.innerHTML += element[1];
+        } else {
+          button.innerHTML += element[0];
+        }
       } else if ((element.length !== 1) && ((element === 'Backspace') || (element === 'Tab') || (element === 'Del') || (element === 'Caps Lock') || (element === 'Enter') || (element === 'Shift') || (element === 'Ctrl'))) {
         button.classList.add('button_darken');
         button.classList.add('button_big');
@@ -54,7 +53,11 @@ function generateKeyboard(keyboardRows) {
         button.innerText = element;
       } else {
         button.classList.add(`k${getCode(element)}`);
-        button.innerText = element;
+        if (onShift) {
+          button.innerText = element.toUpperCase();
+        } else {
+          button.innerText = element;
+        }
       }
       keyboardRow.appendChild(button);
     });
@@ -91,15 +94,22 @@ const pushedButtons = [];
 body.addEventListener('keydown', (e) => {
   e.preventDefault();
   pushedButtons.push(e.code);
+  if (e.which === 16) {
+    deleteKeyboard();
+    if (localStorage.getItem('language') === 'ru') {
+      generateKeyboard(keyboardRowsRu, true);
+    } else {
+      generateKeyboard(keyboardRowsEn, true);
+    }
+  }
   const selectedButton = document.querySelector(`.k${e.which}`);
   selectedButton.classList.add('button_active');
   selectedButton.click();
-  setTimeout(() => {
-    selectedButton.classList.remove('button_active');
-  }, 200);
 });
 body.addEventListener('keyup', (e) => {
   e.preventDefault();
+  const selectedButton = document.querySelector(`.k${e.which}`);
+  selectedButton.classList.remove('button_active');
   if ((pushedButtons.indexOf('ShiftLeft') !== -1) && (pushedButtons.indexOf('AltLeft') !== -1)) {
     deleteKeyboard();
     if (localStorage.getItem('language') === 'ru') {
@@ -115,6 +125,16 @@ body.addEventListener('keyup', (e) => {
     while (pushedButtons.indexOf('AltLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
+  } else if (e.which === 16) {
+    deleteKeyboard();
+    if (localStorage.getItem('language') === 'ru') {
+      generateKeyboard(keyboardRowsRu);
+    } else {
+      generateKeyboard(keyboardRowsEn);
+    }
+  }
+  while (pushedButtons.indexOf(e.code) !== -1) {
+    pushedButtons.splice(pushedButtons.indexOf(e.code), 1);
   }
 });
 
