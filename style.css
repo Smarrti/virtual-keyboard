@@ -28,11 +28,18 @@ html {
   left: -5px;
   font-size: 1.2rem;
 }
+.button_up_hidden {
+  display: none;
+}
 .button_space {
   width: 215px;
 }
 .button:hover {
   background-color: #6e9683;
+}
+.button_active {
+  background-color: #07e67a;
+  border-radius: 50%;
 }
 .button_active:hover {
   background-color: #07e67a;
