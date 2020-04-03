@@ -90,9 +90,10 @@ function generateKeyboard(keyboardRows, onShift) {
     });
     e.addEventListener('click', (element) => {
       const texInput = document.querySelector('.text-input');
-      if ((element.target.innerText.length === 1)) {
+      if ((element.target.innerText.length === 1) && (!(element.target.innerText === '◄') && !(element.target.innerText === '►'))) {
         texInput.value += element.target.innerText;
       } else {
+        const selection = textarea.selectionStart;
         switch (element.target.innerText) {
           case '':
             texInput.value += ' ';
@@ -104,10 +105,17 @@ function generateKeyboard(keyboardRows, onShift) {
             textarea.value += '\n';
             break;
           case 'Del':
-            const selection = textarea.selectionStart;
             textarea.value = textarea.value.slice(0, selection) + textarea.value.slice(selection + 1, textarea.value.length);
             textarea.selectionStart = selection;
             textarea.selectionEnd = selection;
+            break;
+          case '◄':
+            textarea.selectionStart = selection - 1; 
+            textarea.selectionEnd = selection - 1; 
+            break;
+          case '►':
+            textarea.selectionStart = selection + 1; 
+            textarea.selectionEnd = selection + 1; 
             break;
         }
       }
