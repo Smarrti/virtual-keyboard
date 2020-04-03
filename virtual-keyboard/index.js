@@ -27,6 +27,11 @@ function generateKeyboard(keyboardRows, onShift) {
   keyboardRows.forEach((e) => {
     const keyboardRow = document.createElement('div');
     keyboardRow.classList.add('keyboard__row');
+    const retryButtons = {
+      "shift": 0,
+      "ctrl": 0,
+      "alt": 0
+    };
     e.forEach((element) => {
       const button = document.createElement('div');
       button.classList.add('button');
@@ -58,6 +63,16 @@ function generateKeyboard(keyboardRows, onShift) {
         } else {
           button.innerText = element;
         }
+      }
+      if ((element === 'Shift') && (retryButtons.shift === 0)) {
+        button.classList.add('left');
+        retryButtons.shift = 1;
+      } else if ((element === 'Ctrl') && (retryButtons.ctrl === 0)) {
+        button.classList.add('left');
+        retryButtons.ctrl = 1;
+      } else if ((element === 'Alt') && (retryButtons.alt === 0)) {
+        button.classList.add('left');
+        retryButtons.alt = 1;
       }
       keyboardRow.appendChild(button);
     });
@@ -102,14 +117,19 @@ body.addEventListener('keydown', (e) => {
       generateKeyboard(keyboardRowsEn, true);
     }
   }
-  const selectedButton = document.querySelector(`.k${e.which}`);
+  let selectedButton = document.querySelector(`.k${e.which}`);
+  if ((e.code === 'ShiftRight') || (e.code === 'ControlRight') || (e.code === 'AltRight')) {
+    selectedButton = document.querySelector(`.k${e.which}:not(.left)`);
+  }
   selectedButton.classList.add('button_active');
   selectedButton.click();
 });
 body.addEventListener('keyup', (e) => {
   e.preventDefault();
-  const selectedButton = document.querySelector(`.k${e.which}`);
-  selectedButton.classList.remove('button_active');
+  const selectedButton = document.querySelectorAll(`.k${e.which}`);
+  selectedButton.forEach((e) => {
+    e.classList.remove('button_active')
+  });
   if ((pushedButtons.indexOf('ShiftLeft') !== -1) && (pushedButtons.indexOf('AltLeft') !== -1)) {
     deleteKeyboard();
     if (localStorage.getItem('language') === 'ru') {
