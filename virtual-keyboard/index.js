@@ -116,7 +116,10 @@ body.addEventListener('keydown', (e) => {
     } else {
       generateKeyboard(keyboardRowsEn, true);
     }
+  } else if (e.which === 8) {
+    textarea.value = textarea.value.substring(0, textarea.value.length - 2);
   }
+
   let selectedButton = document.querySelector(`.k${e.which}`);
   if ((e.code === 'ShiftRight') || (e.code === 'ControlRight') || (e.code === 'AltRight')) {
     selectedButton = document.querySelector(`.k${e.which}:not(.left)`);
