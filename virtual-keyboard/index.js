@@ -109,17 +109,19 @@ const pushedButtons = [];
 body.addEventListener('keydown', (e) => {
   e.preventDefault();
   pushedButtons.push(e.code);
-  if (e.which === 16) {
-    deleteKeyboard();
-    if (localStorage.getItem('language') === 'ru') {
-      generateKeyboard(keyboardRowsRu, true);
-    } else {
-      generateKeyboard(keyboardRowsEn, true);
-    }
-  } else if (e.which === 8) {
-    textarea.value = textarea.value.substring(0, textarea.value.length - 2);
+  switch (e.which) {
+    case 16:
+      deleteKeyboard();
+      if (localStorage.getItem('language') === 'ru') {
+        generateKeyboard(keyboardRowsRu, true);
+      } else {
+        generateKeyboard(keyboardRowsEn, true);
+      }
+      break;
+    case 8:
+      textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+      break;
   }
-
   let selectedButton = document.querySelector(`.k${e.which}`);
   if ((e.code === 'ShiftRight') || (e.code === 'ControlRight') || (e.code === 'AltRight')) {
     selectedButton = document.querySelector(`.k${e.which}:not(.left)`);
