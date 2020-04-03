@@ -100,8 +100,12 @@ function generateKeyboard(keyboardRows, onShift) {
           case 'Backspace':
             textarea.value = textarea.value.substring(0, textarea.value.length - 1);
             break;
+          case 'Enter':
+            textarea.value += '\n';
+            break;
         }
       }
+      textarea.focus();
     });
   });
 }
