@@ -80,6 +80,9 @@ function generateKeyboard(keyboardRows, onShift) {
     keyboard.appendChild(keyboardRow);
   });
   wrapper.appendChild(keyboard);
+  const notify = document.createElement('p');
+  notify.innerText = 'Виртуальная клавиатура разрабатывалась под Windows OS\nДля переключения языка используйте сочетание клавиш Shift + Alt';
+  wrapper.appendChild(notify);
   document.querySelector('body').appendChild(wrapper);
   const buttons = document.querySelectorAll('.button');
   buttons.forEach((e) => {
