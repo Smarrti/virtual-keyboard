@@ -103,6 +103,12 @@ function generateKeyboard(keyboardRows, onShift) {
           case 'Enter':
             textarea.value += '\n';
             break;
+          case 'Del':
+            const selection = textarea.selectionStart;
+            textarea.value = textarea.value.slice(0, selection) + textarea.value.slice(selection + 1, textarea.value.length);
+            textarea.selectionStart = selection;
+            textarea.selectionEnd = selection;
+            break;
         }
       }
       textarea.focus();
