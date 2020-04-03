@@ -4,6 +4,9 @@ let capsLock = 0;
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
+const notify = document.createElement('p');
+notify.innerText = 'Виртуальная клавиатура разрабатывалась под Windows OS\nДля переключения языка используйте сочетание клавиш Shift + Alt';
+wrapper.appendChild(notify);
 const text = document.createElement('div');
 text.classList.add('text');
 const textarea = document.createElement('textarea');
@@ -80,9 +83,6 @@ function generateKeyboard(keyboardRows, onShift) {
     keyboard.appendChild(keyboardRow);
   });
   wrapper.appendChild(keyboard);
-  const notify = document.createElement('p');
-  notify.innerText = 'Виртуальная клавиатура разрабатывалась под Windows OS\nДля переключения языка используйте сочетание клавиш Shift + Alt';
-  wrapper.appendChild(notify);
   document.querySelector('body').appendChild(wrapper);
   const buttons = document.querySelectorAll('.button');
   buttons.forEach((e) => {
