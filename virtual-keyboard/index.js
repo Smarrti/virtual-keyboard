@@ -92,8 +92,15 @@ function generateKeyboard(keyboardRows, onShift) {
       const texInput = document.querySelector('.text-input');
       if ((element.target.innerText.length === 1)) {
         texInput.value += element.target.innerText;
-      } else if (element.target.innerText === '') {
-        texInput.value += ' ';
+      } else {
+        switch (element.target.innerText) {
+          case '':
+            texInput.value += ' ';
+            break;
+          case 'Backspace':
+            textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+            break;
+        }
       }
     });
   });
@@ -119,7 +126,7 @@ body.addEventListener('keydown', (e) => {
       }
       break;
     case 8:
-      textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+      document.querySelector('.k8').click();
       break;
   }
   let selectedButton = document.querySelector(`.k${e.which}`);
