@@ -1,5 +1,6 @@
 const keyboardRowsRu = [['ё', [1, '!'], [2, '"'], [3, '№'], [4, ';'], [5, '%'], [6, ':'], [7, '?'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', ['\\', '/'], 'Del'], ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'], ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl ']];
 const keyboardRowsEn = [['`', [1, '!'], [2, '@'], [3, '#'], [4, '$'], [5, '%'], [6, '^'], [7, '&'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['[', '{'], [']', '}'], ['\\', '|'], 'Del'], ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [';', ':'], ['\'', '"'], 'Enter'], ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', [',', '<'], ['.', '>'], ['/', '?'], '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl ']];
+let capsLock = 0;
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
@@ -116,6 +117,25 @@ function generateKeyboard(keyboardRows, onShift) {
           case '►':
             textarea.selectionStart = selection + 1; 
             textarea.selectionEnd = selection + 1; 
+            break;
+          case 'Caps Lock':
+            deleteKeyboard();
+            if (capsLock === 0) {
+              if (localStorage.getItem('language') === 'ru') {
+                generateKeyboard(keyboardRowsRu, true);
+              } else {
+                generateKeyboard(keyboardRowsEn, true);
+              }
+              capsLock = 1;
+              document.querySelector('.k20').classList.add('button_active');
+            } else {
+              if (localStorage.getItem('language') === 'ru') {
+                generateKeyboard(keyboardRowsRu);
+              } else {
+                generateKeyboard(keyboardRowsEn);
+              }
+              capsLock = 0;
+            }
             break;
         }
       }
