@@ -25,6 +25,11 @@ function getCode(symbol) {
   return arr[0][1];
 }
 
+function deleteKeyboard() {
+  const keyboard = document.querySelector('.keyboard');
+  wrapper.removeChild(keyboard);
+}
+
 function generateKeyboard(keyboardRows, onShift) {
   const keyboard = document.createElement('div');
   keyboard.classList.add('keyboard');
@@ -32,9 +37,9 @@ function generateKeyboard(keyboardRows, onShift) {
     const keyboardRow = document.createElement('div');
     keyboardRow.classList.add('keyboard__row');
     const retryButtons = {
-      "shift": 0,
-      "ctrl": 0,
-      "alt": 0
+      shift: 0,
+      ctrl: 0,
+      alt: 0,
     };
     e.forEach((element) => {
       const button = document.createElement('div');
@@ -99,29 +104,36 @@ function generateKeyboard(keyboardRows, onShift) {
       } else {
         const selection = textarea.selectionStart;
         switch (element.target.innerText) {
-          case '':
+          case '': {
             texInput.value += ' ';
             break;
-          case 'Backspace':
+          }
+          case 'Backspace': {
             textarea.value = textarea.value.substring(0, textarea.value.length - 1);
             break;
-          case 'Enter':
+          }
+          case 'Enter': {
             textarea.value += '\n';
             break;
-          case 'Del':
-            textarea.value = textarea.value.slice(0, selection) + textarea.value.slice(selection + 1, textarea.value.length);
+          }
+          case 'Del': {
+            const value = [textarea.value];
+            textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
             textarea.selectionStart = selection;
             textarea.selectionEnd = selection;
             break;
-          case '◄':
-            textarea.selectionStart = selection - 1; 
-            textarea.selectionEnd = selection - 1; 
+          }
+          case '◄': {
+            textarea.selectionStart = selection - 1;
+            textarea.selectionEnd = selection - 1;
             break;
-          case '►':
-            textarea.selectionStart = selection + 1; 
-            textarea.selectionEnd = selection + 1; 
+          }
+          case '►': {
+            textarea.selectionStart = selection + 1;
+            textarea.selectionEnd = selection + 1;
             break;
-          case 'Caps Lock':
+          }
+          case 'Caps Lock': {
             deleteKeyboard();
             if (capsLock === 0) {
               if (localStorage.getItem('language') === 'ru') {
@@ -140,16 +152,15 @@ function generateKeyboard(keyboardRows, onShift) {
               capsLock = 0;
             }
             break;
+          }
+          default: {
+            break;
+          }
         }
       }
       textarea.focus();
     });
   });
-}
-
-function deleteKeyboard() {
-  const keyboard = document.querySelector('.keyboard');
-  wrapper.removeChild(keyboard);
 }
 
 const body = document.querySelector('body');
@@ -158,7 +169,7 @@ body.addEventListener('keydown', (e) => {
   e.preventDefault();
   pushedButtons.push(e.code);
   switch (e.which) {
-    case 16:
+    case 16: {
       deleteKeyboard();
       if (localStorage.getItem('language') === 'ru') {
         generateKeyboard(keyboardRowsRu, true);
@@ -166,9 +177,14 @@ body.addEventListener('keydown', (e) => {
         generateKeyboard(keyboardRowsEn, true);
       }
       break;
-    case 8:
+    }
+    case 8: {
       document.querySelector('.k8').click();
       break;
+    }
+    default: {
+      break;
+    }
   }
   let selectedButton = document.querySelector(`.k${e.which}`);
   if ((e.code === 'ShiftRight') || (e.code === 'ControlRight') || (e.code === 'AltRight')) {
@@ -180,8 +196,8 @@ body.addEventListener('keydown', (e) => {
 body.addEventListener('keyup', (e) => {
   e.preventDefault();
   const selectedButton = document.querySelectorAll(`.k${e.which}`);
-  selectedButton.forEach((e) => {
-    e.classList.remove('button_active')
+  selectedButton.forEach((element) => {
+    element.classList.remove('button_active');
   });
   if ((pushedButtons.indexOf('ShiftLeft') !== -1) && (pushedButtons.indexOf('AltLeft') !== -1)) {
     deleteKeyboard();
