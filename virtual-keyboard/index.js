@@ -117,7 +117,7 @@ function generateKeyboard(keyboardRows, onShift) {
             break;
           }
           case 'Del': {
-            const value = [textarea.value];
+            const [value] = [textarea.value];
             textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
             textarea.selectionStart = selection;
             textarea.selectionEnd = selection;
