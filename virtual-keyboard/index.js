@@ -170,11 +170,13 @@ body.addEventListener('keydown', (e) => {
   pushedButtons.push(e.code);
   switch (e.which) {
     case 16: {
-      deleteKeyboard();
-      if (localStorage.getItem('language') === 'ru') {
-        generateKeyboard(keyboardRowsRu, true);
-      } else {
-        generateKeyboard(keyboardRowsEn, true);
+      if (capsLock === 0) {
+        deleteKeyboard();
+        if (localStorage.getItem('language') === 'ru') {
+          generateKeyboard(keyboardRowsRu, true);
+        } else {
+          generateKeyboard(keyboardRowsEn, true);
+        }
       }
       break;
     }
@@ -214,7 +216,7 @@ body.addEventListener('keyup', (e) => {
     while (pushedButtons.indexOf('AltLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
-  } else if (e.which === 16) {
+  } else if ((e.which === 16) && (capsLock === 0)) {
     deleteKeyboard();
     if (localStorage.getItem('language') === 'ru') {
       generateKeyboard(keyboardRowsRu);
