@@ -88,81 +88,98 @@ function generateKeyboard(keyboardRows, onShift) {
   });
   wrapper.appendChild(keyboard);
   document.querySelector('body').appendChild(wrapper);
-  const buttons = document.querySelectorAll('.button');
-  buttons.forEach((button) => {
-    button.addEventListener('mousedown', (buttonEvent) => {
-      buttonEvent.target.classList.add('button_active');
-    });
-    button.addEventListener('mouseup', (buttonEvent) => {
-      buttonEvent.target.classList.remove('button_active');
-    });
-    button.addEventListener('click', (buttonEvent) => {
-      const texInput = document.querySelector('.text-input');
-      const buttonText = buttonEvent.target.innerText;
-      if ((buttonText.length === 1) && (!(buttonText === '◄') && !(buttonText === '►'))) {
-        texInput.value += buttonText;
-      } else {
-        const selection = textarea.selectionStart;
-        switch (buttonText) {
-          case '': {
-            texInput.value += ' ';
-            break;
-          }
-          case 'Backspace': {
-            textarea.value = textarea.value.substring(0, textarea.value.length - 1);
-            break;
-          }
-          case 'Enter': {
-            textarea.value += '\n';
-            break;
-          }
-          case 'Del': {
-            const [value] = [textarea.value];
-            textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
-            textarea.selectionStart = selection;
-            textarea.selectionEnd = selection;
-            break;
-          }
-          case '◄': {
-            textarea.selectionStart = selection - 1;
-            textarea.selectionEnd = selection - 1;
-            break;
-          }
-          case '►': {
-            textarea.selectionStart = selection + 1;
-            textarea.selectionEnd = selection + 1;
-            break;
-          }
-          case 'Caps Lock': {
-            deleteKeyboard();
-            if (capsLock === 0) {
-              if (localStorage.getItem('language') === 'ru') {
-                generateKeyboard(keyboardRowsRu, true);
-              } else {
-                generateKeyboard(keyboardRowsEn, true);
-              }
-              capsLock = 1;
-              document.querySelector('.k20').classList.add('button_active');
+  keyboard.addEventListener('mousedown', (mouse) => {
+    const target = mouse.target;
+    if (target.tagName !== 'DIV') {
+      return;
+    }
+    buttonMouseDown(target);
+  });
+  keyboard.addEventListener('mouseup', (mouse) => {
+    const target = mouse.target;
+    if (target.tagName !== 'DIV') {
+      return;
+    }
+    buttonMouseUp(target);
+  });
+  keyboard.addEventListener('click', (mouse) => {
+    const target = mouse.target;
+    if (target.tagName !== 'DIV') {
+      return;
+    }
+    buttonMouseClick(target);
+  });
+  function buttonMouseDown(buttonEvent) {
+    buttonEvent.classList.add('button_active');
+  }
+  function buttonMouseUp(buttonEvent) {
+    buttonEvent.classList.remove('button_active');
+  }
+  function buttonMouseClick(buttonEvent) {
+    const texInput = document.querySelector('.text-input');
+    const buttonText = buttonEvent.innerText;
+    if ((buttonText.length === 1) && (!(buttonText === '◄') && !(buttonText === '►'))) {
+      texInput.value += buttonText;
+    } else {
+      const selection = textarea.selectionStart;
+      switch (buttonText) {
+        case '': {
+          texInput.value += ' ';
+          break;
+        }
+        case 'Backspace': {
+          textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+          break;
+        }
+        case 'Enter': {
+          textarea.value += '\n';
+          break;
+        }
+        case 'Del': {
+          const [value] = [textarea.value];
+          textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
+          textarea.selectionStart = selection;
+          textarea.selectionEnd = selection;
+          break;
+        }
+        case '◄': {
+          textarea.selectionStart = selection - 1;
+          textarea.selectionEnd = selection - 1;
+          break;
+        }
+        case '►': {
+          textarea.selectionStart = selection + 1;
+          textarea.selectionEnd = selection + 1;
+          break;
+        }
+        case 'Caps Lock': {
+          deleteKeyboard();
+          if (capsLock === 0) {
+            if (localStorage.getItem('language') === 'ru') {
+              generateKeyboard(keyboardRowsRu, true);
             } else {
-              if (localStorage.getItem('language') === 'ru') {
-                generateKeyboard(keyboardRowsRu);
-              } else {
-                generateKeyboard(keyboardRowsEn);
-              }
-              capsLock = 0;
+              generateKeyboard(keyboardRowsEn, true);
             }
-            break;
+            capsLock = 1;
+            document.querySelector('.k20').classList.add('button_active');
+          } else {
+            if (localStorage.getItem('language') === 'ru') {
+              generateKeyboard(keyboardRowsRu);
+            } else {
+              generateKeyboard(keyboardRowsEn);
+            }
+            capsLock = 0;
           }
-          default: {
-            break;
-          }
+          break;
+        }
+        default: {
+          break;
         }
       }
-      textarea.focus();
-    });
-  });
-}
-
+    }
+    textarea.focus();
+  };
+};
 const body = document.querySelector('body');
 const pushedButtons = [];
 body.addEventListener('keydown', (key) => {
