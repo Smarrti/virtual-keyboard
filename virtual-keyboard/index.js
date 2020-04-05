@@ -88,27 +88,6 @@ function generateKeyboard(keyboardRows, onShift) {
   });
   wrapper.appendChild(keyboard);
   document.querySelector('body').appendChild(wrapper);
-  keyboard.addEventListener('mousedown', (mouse) => {
-    const target = mouse.target;
-    if (target.tagName !== 'DIV') {
-      return;
-    }
-    buttonMouseDown(target);
-  });
-  keyboard.addEventListener('mouseup', (mouse) => {
-    const target = mouse.target;
-    if (target.tagName !== 'DIV') {
-      return;
-    }
-    buttonMouseUp(target);
-  });
-  keyboard.addEventListener('click', (mouse) => {
-    const target = mouse.target;
-    if (target.tagName !== 'DIV') {
-      return;
-    }
-    buttonMouseClick(target);
-  });
   function buttonMouseDown(buttonEvent) {
     buttonEvent.classList.add('button_active');
   }
@@ -178,8 +157,29 @@ function generateKeyboard(keyboardRows, onShift) {
       }
     }
     textarea.focus();
-  };
-};
+  }
+  keyboard.addEventListener('mousedown', (mouse) => {
+    const { target } = mouse;
+    if (target.tagName !== 'DIV') {
+      return;
+    }
+    buttonMouseDown(target);
+  });
+  keyboard.addEventListener('mouseup', (mouse) => {
+    const { target } = mouse;
+    if (target.tagName !== 'DIV') {
+      return;
+    }
+    buttonMouseUp(target);
+  });
+  keyboard.addEventListener('click', (mouse) => {
+    const { target } = mouse;
+    if (target.tagName !== 'DIV') {
+      return;
+    }
+    buttonMouseClick(target);
+  });
+}
 const body = document.querySelector('body');
 const pushedButtons = [];
 body.addEventListener('keydown', (key) => {
