@@ -1,6 +1,6 @@
-const keyboardRowsRu = [['ё', [1, '!'], [2, '"'], [3, '№'], [4, ';'], [5, '%'], [6, ':'], [7, '?'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', ['\\', '/'], 'Del'], ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'], ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl ']];
-const keyboardRowsEn = [['`', [1, '!'], [2, '@'], [3, '#'], [4, '$'], [5, '%'], [6, '^'], [7, '&'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['[', '{'], [']', '}'], ['\\', '|'], 'Del'], ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [';', ':'], ['\'', '"'], 'Enter'], ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', [',', '<'], ['.', '>'], ['/', '?'], '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl ']];
-const keyboardDictionary = [['ё', '192'], ['1', '49'], ['2', '50'], ['3', '51'], ['4', '52'], ['5', '53'], ['6', '54'], ['7', '55'], ['8', '56'], ['9', '57'], ['0', '48'], ['-', '189'], ['=', '187'], ['Backspace', '8'], ['Tab', '9'], ['q', '81'], ['w', '87'], ['e', '69'], ['r', '82'], ['t', '84'], ['y', '89'], ['u', '85'], ['i', '73'], ['o', '79'], ['p', '80'], ['[', '219'], [']', '221'], ['\\', '220'], ['Del', '46'], ['Caps Lock', '20'], ['a', '65'], ['s', '83'], ['d', '68'], ['f', '70'], ['g', '71'], ['h', '72'], ['j', '74'], ['k', '75'], ['l', '76'], [';', '186'], ['\'', '222'], ['Enter', '13'], ['Shift', '16'], ['z', '90'], ['x', '88'], ['c', '67'], ['v', '86'], ['b', '66'], ['n', '78'], ['m', '77'], [',', '188'], ['.', '190'], ['/', '191'], ['Shift', '16'], ['▲ ', '38'], ['Ctrl', '17'], ['Ctrl ', '17'], ['Win', '91'], ['Alt', '18'], ['◄ ', '37'], ['▼ ', '40'], ['► ', '39'], ['й', '81'], ['ц', '87'], ['у', '69'], ['к', '82'], ['е', '84'], ['н', '89'], ['г', '85'], ['ш', '73'], ['щ', '79'], ['з', '80'], ['х', '219'], ['ъ', '221'], ['ф', '65'], ['ы', '83'], ['в', '68'], ['а', '70'], ['п', '71'], ['р', '72'], ['о', '74'], ['л', '75'], ['д', '76'], ['ж', '186'], ['э', '222'], ['я', '90'], ['ч', '88'], ['с', '67'], ['м', '86'], ['и', '66'], ['т', '78'], ['ь', '77'], ['б', '188'], ['ю', '190'], ['.', '191'], [' ', '32'], ['`', '192']];
+const keyboardRowsRu = [['ё', [1, '!'], [2, '"'], [3, '№'], [4, ';'], [5, '%'], [6, ':'], [7, '?'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', ['\\', '/'], 'Del'], ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'], ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl']];
+const keyboardRowsEn = [['`', [1, '!'], [2, '@'], [3, '#'], [4, '$'], [5, '%'], [6, '^'], [7, '&'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['[', '{'], [']', '}'], ['\\', '|'], 'Del'], ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [';', ':'], ['\'', '"'], 'Enter'], ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', [',', '<'], ['.', '>'], ['/', '?'], '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl']];
+const keyboardDictionary = [['ё', '192'], ['1', '49'], ['2', '50'], ['3', '51'], ['4', '52'], ['5', '53'], ['6', '54'], ['7', '55'], ['8', '56'], ['9', '57'], ['0', '48'], ['-', '189'], ['=', '187'], ['Backspace', '8'], ['Tab', '9'], ['q', '81'], ['w', '87'], ['e', '69'], ['r', '82'], ['t', '84'], ['y', '89'], ['u', '85'], ['i', '73'], ['o', '79'], ['p', '80'], ['[', '219'], [']', '221'], ['\\', '220'], ['Del', '46'], ['Caps Lock', '20'], ['a', '65'], ['s', '83'], ['d', '68'], ['f', '70'], ['g', '71'], ['h', '72'], ['j', '74'], ['k', '75'], ['l', '76'], [';', '186'], ['\'', '222'], ['Enter', '13'], ['Shift', '16'], ['z', '90'], ['x', '88'], ['c', '67'], ['v', '86'], ['b', '66'], ['n', '78'], ['m', '77'], [',', '188'], ['.', '190'], ['/', '191'], ['Shift', '16'], ['▲ ', '38'], ['Ctrl', '17'], ['Win', '91'], ['Alt', '18'], ['◄ ', '37'], ['▼ ', '40'], ['► ', '39'], ['й', '81'], ['ц', '87'], ['у', '69'], ['к', '82'], ['е', '84'], ['н', '89'], ['г', '85'], ['ш', '73'], ['щ', '79'], ['з', '80'], ['х', '219'], ['ъ', '221'], ['ф', '65'], ['ы', '83'], ['в', '68'], ['а', '70'], ['п', '71'], ['р', '72'], ['о', '74'], ['л', '75'], ['д', '76'], ['ж', '186'], ['э', '222'], ['я', '90'], ['ч', '88'], ['с', '67'], ['м', '86'], ['и', '66'], ['т', '78'], ['ь', '77'], ['б', '188'], ['ю', '190'], ['.', '191'], [' ', '32'], ['`', '192']];
 const serviceKeys = ['Backspace', 'Tab', 'Del', 'Caps Lock', 'Enter', 'Shift', 'Ctrl'];
 
 let capsLock = 0;
@@ -43,43 +43,45 @@ function generateKeyboard(keyboardRows, onShift) {
       ctrl: 0,
       alt: 0,
     };
-    rows.forEach((row) => {
+    rows.forEach((letter) => {
       const button = document.createElement('div');
       button.classList.add('button');
-      if (Array.isArray(row)) {
+      if (Array.isArray(letter)) {
         button.classList.add('button_double');
-        button.classList.add(`k${getCode(row[0])}`);
+        button.classList.add(`k${getCode(letter[0])}`);
         if (onShift) {
-          button.innerHTML += row[1];
+          button.innerHTML += letter[1];
         } else {
-          button.innerHTML += row[0];
+          button.innerHTML += letter[0];
         }
-      } else if (row.length !== 1) {
-        if (serviceKeys.indexOf(row) !== -1) {
-          button.classList.add('button_big');
+      } else if (letter.length !== 1) {
+        if (serviceKeys.indexOf(letter) !== -1) {
+          if (!((letter === 'Ctrl') && (retryButtons.ctrl === 1))) {
+            button.classList.add('button_big');
+          }
         }
         button.classList.add('button_darken');
-        button.classList.add(`k${getCode(row)}`);
-        button.innerText = row;
-      } else if ((row.length === 1) && ((row === ' '))) {
+        button.classList.add(`k${getCode(letter)}`);
+        button.innerText = letter;
+      } else if ((letter.length === 1) && ((letter === ' '))) {
         button.classList.add('button_space');
-        button.classList.add(`k${getCode(row)}`);
-        button.innerText = row;
+        button.classList.add(`k${getCode(letter)}`);
+        button.innerText = letter;
       } else {
-        button.classList.add(`k${getCode(row)}`);
+        button.classList.add(`k${getCode(letter)}`);
         if (onShift) {
-          button.innerText = row.toUpperCase();
+          button.innerText = letter.toUpperCase();
         } else {
-          button.innerText = row;
+          button.innerText = letter;
         }
       }
-      if ((row === 'Shift') && (retryButtons.shift === 0)) {
+      if ((letter === 'Shift') && (retryButtons.shift === 0)) {
         button.classList.add('left');
         retryButtons.shift = 1;
-      } else if ((row === 'Ctrl') && (retryButtons.ctrl === 0)) {
+      } else if ((letter === 'Ctrl') && (retryButtons.ctrl === 0)) {
         button.classList.add('left');
         retryButtons.ctrl = 1;
-      } else if ((row === 'Alt') && (retryButtons.alt === 0)) {
+      } else if ((letter === 'Alt') && (retryButtons.alt === 0)) {
         button.classList.add('left');
         retryButtons.alt = 1;
       }
