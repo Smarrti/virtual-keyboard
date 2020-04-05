@@ -217,7 +217,7 @@ body.addEventListener('keyup', (key) => {
     while (pushedButtons.indexOf('AltLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
-  } else if ((e.which === 16) && (capsLock === 0)) {
+  } else if ((key.which === 16) && (capsLock === 0)) {
     deleteKeyboard();
     if (localStorage.getItem('language') === 'ru') {
       generateKeyboard(keyboardRowsRu);
