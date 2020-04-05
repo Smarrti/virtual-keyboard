@@ -61,15 +61,12 @@ function generateKeyboard(keyboardRows, onShift) {
           }
         }
         button.classList.add('button_darken');
-        button.classList.add(`k${getCode(letter)}`);
-        button.innerText = letter;
       } else if ((letter.length === 1) && ((letter === ' '))) {
         button.classList.add('button_space');
+      }
+      if (!(Array.isArray(letter))) {
         button.classList.add(`k${getCode(letter)}`);
-        button.innerText = letter;
-      } else {
-        button.classList.add(`k${getCode(letter)}`);
-        if (onShift) {
+        if ((onShift) && (!(letter.length !== 1))) {
           button.innerText = letter.toUpperCase();
         } else {
           button.innerText = letter;
