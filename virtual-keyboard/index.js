@@ -29,7 +29,9 @@ function getCode(symbol) {
 
 function deleteKeyboard() {
   const keyboard = document.querySelector('.keyboard');
-  wrapper.removeChild(keyboard);
+  if (keyboard !== null) {
+    wrapper.removeChild(keyboard);
+  }
 }
 
 function generateKeyboard(keyboardRows, onShift) {
@@ -132,21 +134,12 @@ function generateKeyboard(keyboardRows, onShift) {
           break;
         }
         case 'Caps Lock': {
-          deleteKeyboard();
           if (capsLock === 0) {
-            if (localStorage.getItem('language') === 'ru') {
-              generateKeyboard(keyboardRowsRu, true);
-            } else {
-              generateKeyboard(keyboardRowsEn, true);
-            }
+            generateWithLocalStorage(true);
             capsLock = 1;
             document.querySelector('.k20').classList.add('button_active');
           } else {
-            if (localStorage.getItem('language') === 'ru') {
-              generateKeyboard(keyboardRowsRu);
-            } else {
-              generateKeyboard(keyboardRowsEn);
-            }
+            generateWithLocalStorage(false);
             capsLock = 0;
           }
           break;
@@ -180,6 +173,16 @@ function generateKeyboard(keyboardRows, onShift) {
     buttonMouseClick(target);
   });
 }
+
+function generateWithLocalStorage(shift) {
+  deleteKeyboard();
+  if (localStorage.getItem('language') === 'ru') {
+    generateKeyboard(keyboardRowsRu, shift);
+  } else {
+    generateKeyboard(keyboardRowsEn, shift);
+  }
+}
+
 const body = document.querySelector('body');
 const pushedButtons = [];
 body.addEventListener('keydown', (key) => {
@@ -190,12 +193,7 @@ body.addEventListener('keydown', (key) => {
   switch (key.which) {
     case shiftButton: {
       if (capsLock === 0) {
-        deleteKeyboard();
-        if (localStorage.getItem('language') === 'ru') {
-          generateKeyboard(keyboardRowsRu, true);
-        } else {
-          generateKeyboard(keyboardRowsEn, true);
-        }
+        generateWithLocalStorage(true);
       }
       break;
     }
@@ -221,14 +219,13 @@ body.addEventListener('keyup', (key) => {
     element.classList.remove('button_active');
   });
   if ((pushedButtons.indexOf('ShiftLeft') !== -1) && (pushedButtons.indexOf('AltLeft') !== -1)) {
-    deleteKeyboard();
     if (localStorage.getItem('language') === 'ru') {
       localStorage.setItem('language', 'en');
-      generateKeyboard(keyboardRowsEn);
     } else {
       localStorage.setItem('language', 'ru');
-      generateKeyboard(keyboardRowsRu);
     }
+    generateWithLocalStorage(capsLock);
+    
     while (pushedButtons.indexOf('ShiftLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('ShiftLeft'), 1);
     }
@@ -236,20 +233,11 @@ body.addEventListener('keyup', (key) => {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
   } else if ((key.which === 16) && (capsLock === 0)) {
-    deleteKeyboard();
-    if (localStorage.getItem('language') === 'ru') {
-      generateKeyboard(keyboardRowsRu);
-    } else {
-      generateKeyboard(keyboardRowsEn);
-    }
+    generateWithLocalStorage();
   }
   while (pushedButtons.indexOf(key.code) !== -1) {
     pushedButtons.splice(pushedButtons.indexOf(key.code), 1);
   }
 });
 
-if (localStorage.getItem('language') === 'ru') {
-  generateKeyboard(keyboardRowsRu);
-} else {
-  generateKeyboard(keyboardRowsEn);
-}
+generateWithLocalStorage();
