@@ -185,8 +185,10 @@ const pushedButtons = [];
 body.addEventListener('keydown', (key) => {
   key.preventDefault();
   pushedButtons.push(key.code);
+  const shiftButton = 16;
+  const backspaceButton = 8;
   switch (key.which) {
-    case 16: {
+    case shiftButton: {
       if (capsLock === 0) {
         deleteKeyboard();
         if (localStorage.getItem('language') === 'ru') {
@@ -197,7 +199,7 @@ body.addEventListener('keydown', (key) => {
       }
       break;
     }
-    case 8: {
+    case backspaceButton: {
       document.querySelector('.k8').click();
       break;
     }
