@@ -34,6 +34,8 @@ function deleteKeyboard() {
   }
 }
 
+let generateWithLocalStorage;
+
 function generateKeyboard(keyboardRows, onShift) {
   const keyboard = document.createElement('div');
   keyboard.classList.add('keyboard');
@@ -174,14 +176,14 @@ function generateKeyboard(keyboardRows, onShift) {
   });
 }
 
-function generateWithLocalStorage(shift) {
+generateWithLocalStorage = (shift) => {
   deleteKeyboard();
   if (localStorage.getItem('language') === 'ru') {
     generateKeyboard(keyboardRowsRu, shift);
   } else {
     generateKeyboard(keyboardRowsEn, shift);
   }
-}
+};
 
 const body = document.querySelector('body');
 const pushedButtons = [];
@@ -225,7 +227,7 @@ body.addEventListener('keyup', (key) => {
       localStorage.setItem('language', 'ru');
     }
     generateWithLocalStorage(capsLock);
-    
+
     while (pushedButtons.indexOf('ShiftLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('ShiftLeft'), 1);
     }
