@@ -59,7 +59,7 @@ function generateKeyboard(keyboardRows, onShift) {
           button.innerHTML += letter[0];
         }
       } else if (letter.length !== 1) {
-        if (serviceKeys.indexOf(letter) !== -1) {
+        if (serviceKeys.includes(letter)) {
           if (!((letter === 'Ctrl') && (retryButtons.ctrl === 1))) {
             button.classList.add('button_big');
           }
