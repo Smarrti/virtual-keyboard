@@ -119,7 +119,7 @@ function generateKeyboard(keyboardRows, onShift) {
           break;
         }
         case 'Del': {
-          const [value] = [textarea.value];
+          const { value } = textarea;
           textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
           textarea.selectionStart = selection;
           textarea.selectionEnd = selection;
@@ -226,8 +226,11 @@ body.addEventListener('keyup', (key) => {
     } else {
       localStorage.setItem('language', 'ru');
     }
-    generateWithLocalStorage(capsLock);
-
+    if (capsLock === 1) {
+      generateWithLocalStorage(true);
+    } else {
+      generateWithLocalStorage(false);
+    }
     while (pushedButtons.indexOf('ShiftLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('ShiftLeft'), 1);
     }
@@ -235,11 +238,11 @@ body.addEventListener('keyup', (key) => {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
   } else if (key.which === 16 && capsLock === 0) {
-    generateWithLocalStorage();
+    generateWithLocalStorage(false);
   }
   while (pushedButtons.indexOf(key.code) !== -1) {
     pushedButtons.splice(pushedButtons.indexOf(key.code), 1);
   }
 });
 
-generateWithLocalStorage();
+generateWithLocalStorage(false);
