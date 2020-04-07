@@ -60,29 +60,29 @@ function generateKeyboard(keyboardRows, onShift) {
         }
       } else if (letter.length !== 1) {
         if (serviceKeys.includes(letter)) {
-          if (!((letter === 'Ctrl') && (retryButtons.ctrl === 1))) {
+          if (!(letter === 'Ctrl' && retryButtons.ctrl === 1)) {
             button.classList.add('button_big');
           }
         }
         button.classList.add('button_darken');
-      } else if ((letter.length === 1) && ((letter === ' '))) {
+      } else if (letter.length === 1 && letter === ' ') {
         button.classList.add('button_space');
       }
-      if (!(Array.isArray(letter))) {
+      if (!Array.isArray(letter)) {
         button.classList.add(`k${getCode(letter)}`);
-        if ((onShift) && (!(letter.length !== 1))) {
+        if (onShift && letter.length === 1) {
           button.innerText = letter.toUpperCase();
         } else {
           button.innerText = letter;
         }
       }
-      if ((letter === 'Shift') && (retryButtons.shift === 0)) {
+      if (letter === 'Shift' && retryButtons.shift === 0) {
         button.classList.add('left');
         retryButtons.shift = 1;
-      } else if ((letter === 'Ctrl') && (retryButtons.ctrl === 0)) {
+      } else if (letter === 'Ctrl' && retryButtons.ctrl === 0) {
         button.classList.add('left');
         retryButtons.ctrl = 1;
-      } else if ((letter === 'Alt') && (retryButtons.alt === 0)) {
+      } else if (letter === 'Alt' && retryButtons.alt === 0) {
         button.classList.add('left');
         retryButtons.alt = 1;
       }
@@ -101,7 +101,7 @@ function generateKeyboard(keyboardRows, onShift) {
   function buttonMouseClick(buttonEvent) {
     const texInput = document.querySelector('.text-input');
     const buttonText = buttonEvent.innerText;
-    if ((buttonText.length === 1) && (!(buttonText === '◄') && !(buttonText === '►'))) {
+    if (buttonText.length === 1 && !(buttonText === '◄') && !(buttonText === '►')) {
       texInput.value += buttonText;
     } else {
       const selection = textarea.selectionStart;
@@ -208,7 +208,7 @@ body.addEventListener('keydown', (key) => {
     }
   }
   let selectedButton = document.querySelector(`.k${key.which}`);
-  if ((key.code === 'ShiftRight') || (key.code === 'ControlRight') || (key.code === 'AltRight')) {
+  if (key.code === 'ShiftRight' || key.code === 'ControlRight' || key.code === 'AltRight') {
     selectedButton = document.querySelector(`.k${key.which}:not(.left)`);
   }
   selectedButton.classList.add('button_active');
@@ -220,7 +220,7 @@ body.addEventListener('keyup', (key) => {
   selectedButton.forEach((element) => {
     element.classList.remove('button_active');
   });
-  if ((pushedButtons.indexOf('ShiftLeft') !== -1) && (pushedButtons.indexOf('AltLeft') !== -1)) {
+  if (pushedButtons.includes('ShiftLeft') && pushedButtons.includes('AltLeft')) {
     if (localStorage.getItem('language') === 'ru') {
       localStorage.setItem('language', 'en');
     } else {
@@ -234,7 +234,7 @@ body.addEventListener('keyup', (key) => {
     while (pushedButtons.indexOf('AltLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
-  } else if ((key.which === 16) && (capsLock === 0)) {
+  } else if (key.which === 16 && capsLock === 0) {
     generateWithLocalStorage();
   }
   while (pushedButtons.indexOf(key.code) !== -1) {
