@@ -552,7 +552,7 @@ const generateKeyboard = (onShift, language) => {
           textarea.value += '\n';
           break;
         }
-        case 'Del': {
+        case 'Delete': {
           const { value } = textarea;
           textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
           textarea.selectionStart = selection;
