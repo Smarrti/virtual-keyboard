@@ -12,84 +12,84 @@ const dictionary = {
     rusOnShift: '!',
     eng: '1',
     engOnShift: '!',
-    code: 49
+    code: 49,
   },
   Digit2: {
     rus: '2',
     rusOnShift: '"',
     eng: '2',
     engOnShift: '@',
-    code: 50
+    code: 50,
   },
   Digit3: {
     rus: '3',
     rusOnShift: '№',
     eng: '3',
     engOnShift: '#',
-    code: 51
+    code: 51,
   },
   Digit4: {
     rus: '4',
     rusOnShift: ';',
     eng: '4',
     engOnShift: '$',
-    code: 52
+    code: 52,
   },
   Digit5: {
     rus: '5',
     rusOnShift: '%',
     eng: '5',
     engOnShift: '%',
-    code: 53
+    code: 53,
   },
   Digit6: {
     rus: '6',
     rusOnShift: ':',
     eng: '6',
     engOnShift: '^',
-    code: 54
+    code: 54,
   },
   Digit7: {
     rus: '7',
     rusOnShift: '?',
     eng: '7',
     engOnShift: '&',
-    code: 55
+    code: 55,
   },
   Digit8: {
     rus: '8',
     rusOnShift: '*',
     eng: '8',
     engOnShift: '*',
-    code: 56
+    code: 56,
   },
   Digit9: {
     rus: '9',
     rusOnShift: '(',
     eng: '9',
     engOnShift: '(',
-    code: 57
+    code: 57,
   },
   Digit0: {
     rus: '0',
     rusOnShift: ')',
     eng: '0',
     engOnShift: ')',
-    code: 48
+    code: 48,
   },
   Minus: {
     rus: '-',
     rusOnShift: '_',
     eng: '-',
     engOnShift: '_',
-    code: 189
+    code: 189,
   },
   Equal: {
     rus: '=',
     rusOnShift: '+',
     eng: '=',
     engOnShift: '+',
-    code: 187
+    code: 187,
   },
   Backspace: {
     rus: 'Backspace',
@@ -97,7 +97,7 @@ const dictionary = {
     eng: 'Backspace',
     engOnShift: 'Backspace',
     code: 8,
-    type: 'service'
+    type: 'service',
   },
   Tab: {
     rus: 'Tab',
@@ -105,98 +105,98 @@ const dictionary = {
     eng: 'Tab',
     engOnShift: 'Tab',
     code: 9,
-    type: 'service'
+    type: 'service',
   },
   KeyQ: {
     rus: 'й',
     rusOnShift: 'Й',
     eng: 'q',
     engOnShift: 'Q',
-    code: 81
+    code: 81,
   },
   KeyW: {
     rus: 'ц',
     rusOnShift: 'Ц',
     eng: 'w',
     engOnShift: 'W',
-    code: 87
+    code: 87,
   },
   KeyE: {
     rus: 'у',
     rusOnShift: 'У',
     eng: 'e',
     engOnShift: 'E',
-    code: 69
+    code: 69,
   },
   KeyR: {
     rus: 'к',
     rusOnShift: 'К',
     eng: 'r',
     engOnShift: 'R',
-    code: 82
+    code: 82,
   },
   KeyT: {
     rus: 'е',
     rusOnShift: 'Е',
     eng: 't',
     engOnShift: 'T',
-    code: 84
+    code: 84,
   },
   KeyY: {
     rus: 'н',
     rusOnShift: 'Н',
     eng: 'y',
     engOnShift: 'Y',
-    code: 89
+    code: 89,
   },
   KeyU: {
     rus: 'г',
     rusOnShift: 'Г',
     eng: 'u',
     engOnShift: 'U',
-    code: 85
+    code: 85,
   },
   KeyI: {
     rus: 'ш',
     rusOnShift: 'Ш',
     eng: 'i',
     engOnShift: 'I',
-    code: 73
+    code: 73,
   },
   KeyO: {
     rus: 'щ',
     rusOnShift: 'Щ',
     eng: 'o',
     engOnShift: 'O',
-    code: 79
+    code: 79,
   },
   KeyP: {
     rus: 'з',
     rusOnShift: 'З',
     eng: 'p',
     engOnShift: 'P',
-    code: 80
+    code: 80,
   },
   BracketLeft: {
     rus: 'х',
     rusOnShift: 'Х',
     eng: '[',
     engOnShift: '{',
-    code: 219
+    code: 219,
   },
   BracketRight: {
     rus: 'ъ',
     rusOnShift: 'Ъ',
     eng: ']',
     engOnShift: '}',
-    code: 221
+    code: 221,
   },
   Backslash: {
     rus: '\\',
     rusOnShift: '/',
     eng: '\\',
     engOnShift: '|',
-    code: 220
+    code: 220,
   },
   Delete: {
     rus: 'Delete',
@@ -204,7 +204,7 @@ const dictionary = {
     eng: 'Delete',
     engOnShift: 'Delete',
     code: 46,
-    type: 'service'
+    type: 'service',
   },
   CapsLock: {
     rus: 'Caps Lock',
@@ -212,84 +212,84 @@ const dictionary = {
     eng: 'Caps Lock',
     engOnShift: 'Caps Lock',
     code: 20,
-    type: 'service'
+    type: 'service',
   },
   KeyA: {
     rus: 'ф',
     rusOnShift: 'Ф',
     eng: 'a',
     engOnShift: 'A',
-    code: 65
+    code: 65,
   },
   KeyS: {
     rus: 'ы',
     rusOnShift: 'Ы',
     eng: 's',
     engOnShift: 'S',
-    code: 83
+    code: 83,
   },
   KeyD: {
     rus: 'в',
     rusOnShift: 'В',
     eng: 'd',
     engOnShift: 'D',
-    code: 68
+    code: 68,
   },
   KeyF: {
     rus: 'а',
     rusOnShift: 'А',
     eng: 'f',
     engOnShift: 'F',
-    code: 70
+    code: 70,
   },
   KeyG: {
     rus: 'п',
     rusOnShift: 'П',
     eng: 'g',
     engOnShift: 'G',
-    code: 71
+    code: 71,
   },
   KeyH: {
     rus: 'р',
     rusOnShift: 'Р',
     eng: 'h',
     engOnShift: 'H',
-    code: 72
+    code: 72,
   },
   KeyJ: {
     rus: 'о',
     rusOnShift: 'О',
     eng: 'j',
     engOnShift: 'J',
-    code: 74
+    code: 74,
   },
   KeyK: {
     rus: 'л',
     rusOnShift: 'Л',
     eng: 'k',
     engOnShift: 'K',
-    code: 75
+    code: 75,
   },
   KeyL: {
     rus: 'д',
     rusOnShift: 'Д',
     eng: 'l',
     engOnShift: 'L',
-    code: 76
+    code: 76,
   },
   Semicolon: {
     rus: 'ж',
     rusOnShift: 'Ж',
     eng: ';',
     engOnShift: ':',
-    code: 186
+    code: 186,
   },
   Quote: {
     rus: 'э',
     rusOnShift: 'Э',
     eng: '\'',
     engOnShift: '"',
-    code: 222
+    code: 222,
   },
   Enter: {
     rus: 'Enter',
@@ -297,7 +297,7 @@ const dictionary = {
     eng: 'Enter',
     engOnShift: 'Enter',
     code: 13,
-    type: 'service'
+    type: 'service',
   },
   ShiftLeft: {
     rus: 'Shift',
@@ -305,77 +305,77 @@ const dictionary = {
     eng: 'Shift',
     engOnShift: 'Shift',
     code: 16,
-    type: 'service'
+    type: 'service',
   },
   KeyZ: {
     rus: 'я',
     rusOnShift: 'Я',
     eng: 'z',
     engOnShift: 'Z',
-    code: 90
+    code: 90,
   },
   KeyX: {
     rus: 'ч',
     rusOnShift: 'Ч',
     eng: 'x',
     engOnShift: 'X',
-    code: 88
+    code: 88,
   },
   KeyC: {
     rus: 'с',
     rusOnShift: 'С',
     eng: 'c',
     engOnShift: 'C',
-    code: 67
+    code: 67,
   },
   KeyV: {
     rus: 'м',
     rusOnShift: 'М',
     eng: 'v',
     engOnShift: 'V',
-    code: 86
+    code: 86,
   },
   KeyB: {
     rus: 'и',
     rusOnShift: 'И',
     eng: 'b',
     engOnShift: 'B',
-    code: 66
+    code: 66,
   },
   KeyN: {
     rus: 'ь',
     rusOnShift: 'Ь',
     eng: 'n',
     engOnShift: 'N',
-    code: 78
+    code: 78,
   },
   KeyM: {
     rus: 'т',
     rusOnShift: 'Т',
     eng: 'm',
     engOnShift: 'M',
-    code: 77
+    code: 77,
   },
   Comma: {
     rus: 'б',
     rusOnShift: 'Б',
     eng: ',',
     engOnShift: '<',
-    code: 188
+    code: 188,
   },
   Period: {
     rus: 'ю',
     rusOnShift: 'Ю',
     eng: '.',
     engOnShift: '>',
-    code: 190
+    code: 190,
   },
   Slash: {
     rus: '.',
     rusOnShift: ',',
     eng: '/',
     engOnShift: '?',
-    code: 191
+    code: 191,
   },
   ArrowUp: {
     rus: '▲',
@@ -383,7 +383,7 @@ const dictionary = {
     eng: '▲',
     engOnShift: '▲',
     code: 38,
-    type: 'notService'
+    type: 'notService',
   },
   ShiftRight: {
     rus: 'Shift',
@@ -391,7 +391,7 @@ const dictionary = {
     eng: 'Shift',
     engOnShift: 'Shift',
     code: 16,
-    type: 'service'
+    type: 'service',
   },
   ControlLeft: {
     rus: 'Ctrl',
@@ -399,7 +399,7 @@ const dictionary = {
     eng: 'Ctrl',
     engOnShift: 'Ctrl',
     code: 17,
-    type: 'service'
+    type: 'service',
   },
   OSLeft: {
     rus: 'Win',
@@ -407,7 +407,7 @@ const dictionary = {
     eng: 'Win',
     engOnShift: 'Win',
     code: 91,
-    type: 'notService'
+    type: 'notService',
   },
   AltLeft: {
     rus: 'Alt',
@@ -415,7 +415,7 @@ const dictionary = {
     eng: 'Alt',
     engOnShift: 'Alt',
     code: 18,
-    type: 'notService'
+    type: 'notService',
   },
   Space: {
     rus: ' ',
@@ -423,7 +423,7 @@ const dictionary = {
     eng: ' ',
     engOnShift: ' ',
     code: 32,
-    type: 'space'
+    type: 'space',
   },
   AltRight: {
     rus: 'Alt',
@@ -431,7 +431,7 @@ const dictionary = {
     eng: 'Alt',
     engOnShift: 'Alt',
     code: 18,
-    type: 'notService'
+    type: 'notService',
   },
   ArrowLeft: {
     rus: '◄',
@@ -439,7 +439,7 @@ const dictionary = {
     eng: '◄',
     engOnShift: '◄',
     code: 37,
-    type: 'notService'
+    type: 'notService',
   },
   ArrowDown: {
     rus: '▼',
@@ -447,7 +447,7 @@ const dictionary = {
     eng: '▼',
     engOnShift: '▼',
     code: 40,
-    type: 'notService'
+    type: 'notService',
   },
   ArrowRight: {
     rus: '►',
@@ -455,7 +455,7 @@ const dictionary = {
     eng: '►',
     engOnShift: '►',
     code: 39,
-    type: 'notService'
+    type: 'notService',
   },
   ControlRight: {
     rus: 'Ctrl',
@@ -463,8 +463,8 @@ const dictionary = {
     eng: 'Ctrl',
     engOnShift: 'Ctrl',
     code: 17,
-    type: 'notService'
-  }
+    type: 'notService',
+  },
 };
 
 let capsLock = false;
@@ -497,7 +497,7 @@ const generateKeyboard = (onShift, language) => {
   keyboardRows.forEach((row) => {
     const keyboardRow = document.createElement('div');
     keyboardRow.classList.add('keyboard__row');
-    row.forEach((button) => { 
+    row.forEach((button) => {
       const keyboardButton = document.createElement('div');
       keyboardButton.classList.add('button', `k${dictionary[button].code}`);
       switch (dictionary[button].type) {
@@ -517,14 +517,14 @@ const generateKeyboard = (onShift, language) => {
         keyboardButton.classList.add('left');
       }
       if (onShift) {
-        keyboardButton.innerText = dictionary[button][language + 'OnShift'];
+        keyboardButton.innerText = dictionary[button][`${language}OnShift`];
       } else {
         keyboardButton.innerText = dictionary[button][language];
       }
       keyboardRow.appendChild(keyboardButton);
-    })
+    });
     keyboard.appendChild(keyboardRow);
-  })
+  });
   document.querySelector('.wrapper').appendChild(keyboard);
   function buttonMouseDown(buttonEvent) {
     buttonEvent.classList.add('button_active');
@@ -608,7 +608,7 @@ const generateKeyboard = (onShift, language) => {
     }
     buttonMouseClick(target);
   });
-}
+};
 
 generateWithLocalStorage = (shift) => {
   deleteKeyboard();
