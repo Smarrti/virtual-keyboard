@@ -607,12 +607,12 @@ const generateKeyboard = (onShift, language) => {
   });
 }
 
-generateWithLocalStorage = () => {
+generateWithLocalStorage = (shift) => {
   deleteKeyboard();
   if (localStorage.getItem('language') === 'ru') {
-    generateKeyboard(capsLock, 'rus');
+    generateKeyboard(capsLock || shift, 'rus');
   } else {
-    generateKeyboard(capsLock, 'eng');
+    generateKeyboard(capsLock || shift, 'eng');
   }
 };
 
