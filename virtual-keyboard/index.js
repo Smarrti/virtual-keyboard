@@ -454,7 +454,7 @@ const dictionary = {
     rusOnShift: '►',
     eng: '►',
     engOnShift: '►',
-    code: 38,
+    code: 39,
     type: 'notService'
   },
   ControlRight: {
