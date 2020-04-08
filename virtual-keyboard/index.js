@@ -82,14 +82,14 @@ const dictionary = {
     rusOnShift: '_',
     eng: '-',
     engOnShift: '_',
-    code: 173
+    code: 189
   },
   Equal: {
     rus: '=',
     rusOnShift: '+',
     eng: '=',
     engOnShift: '+',
-    code: 61
+    code: 187
   },
   Backspace: {
     rus: 'Backspace',
