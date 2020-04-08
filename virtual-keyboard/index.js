@@ -513,6 +513,9 @@ const generateKeyboard = (onShift, language) => {
         default:
           break;
       }
+      if (button === 'ShiftLeft' || button === 'ControlLeft' || button === 'AltLeft') {
+        keyboardButton.classList.add('left');
+      }
       if (onShift) {
         keyboardButton.innerText = dictionary[button][language + 'OnShift']
       } else {
