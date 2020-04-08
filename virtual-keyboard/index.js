@@ -1,9 +1,473 @@
-const keyboardRowsRu = [['ё', [1, '!'], [2, '"'], [3, '№'], [4, ';'], [5, '%'], [6, ':'], [7, '?'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', ['\\', '/'], 'Del'], ['Caps Lock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter'], ['Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl']];
-const keyboardRowsEn = [['`', [1, '!'], [2, '@'], [3, '#'], [4, '$'], [5, '%'], [6, '^'], [7, '&'], [8, '*'], [9, '('], [0, ')'], ['-', '_'], ['=', '+'], 'Backspace'], ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', ['[', '{'], [']', '}'], ['\\', '|'], 'Del'], ['Caps Lock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', [';', ':'], ['\'', '"'], 'Enter'], ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', [',', '<'], ['.', '>'], ['/', '?'], '▲ ', 'Shift'], ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄ ', '▼ ', '► ', 'Ctrl']];
-const keyboardDictionary = [['ё', '192'], ['1', '49'], ['2', '50'], ['3', '51'], ['4', '52'], ['5', '53'], ['6', '54'], ['7', '55'], ['8', '56'], ['9', '57'], ['0', '48'], ['-', '189'], ['=', '187'], ['Backspace', '8'], ['Tab', '9'], ['q', '81'], ['w', '87'], ['e', '69'], ['r', '82'], ['t', '84'], ['y', '89'], ['u', '85'], ['i', '73'], ['o', '79'], ['p', '80'], ['[', '219'], [']', '221'], ['\\', '220'], ['Del', '46'], ['Caps Lock', '20'], ['a', '65'], ['s', '83'], ['d', '68'], ['f', '70'], ['g', '71'], ['h', '72'], ['j', '74'], ['k', '75'], ['l', '76'], [';', '186'], ['\'', '222'], ['Enter', '13'], ['Shift', '16'], ['z', '90'], ['x', '88'], ['c', '67'], ['v', '86'], ['b', '66'], ['n', '78'], ['m', '77'], [',', '188'], ['.', '190'], ['/', '191'], ['Shift', '16'], ['▲ ', '38'], ['Ctrl', '17'], ['Win', '91'], ['Alt', '18'], ['◄ ', '37'], ['▼ ', '40'], ['► ', '39'], ['й', '81'], ['ц', '87'], ['у', '69'], ['к', '82'], ['е', '84'], ['н', '89'], ['г', '85'], ['ш', '73'], ['щ', '79'], ['з', '80'], ['х', '219'], ['ъ', '221'], ['ф', '65'], ['ы', '83'], ['в', '68'], ['а', '70'], ['п', '71'], ['р', '72'], ['о', '74'], ['л', '75'], ['д', '76'], ['ж', '186'], ['э', '222'], ['я', '90'], ['ч', '88'], ['с', '67'], ['м', '86'], ['и', '66'], ['т', '78'], ['ь', '77'], ['б', '188'], ['ю', '190'], ['.', '191'], [' ', '32'], ['`', '192']];
-const serviceKeys = ['Backspace', 'Tab', 'Del', 'Caps Lock', 'Enter', 'Shift', 'Ctrl'];
+const keyboardRows = [['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'], ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketLeft', 'Backslash', 'Delete'], ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'], ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'], ['ControlLeft', 'OSLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']];
+const dictionary = {
+  Backquote: {
+    rus: 'ё',
+    rusOnShift: 'Ё',
+    eng: '`',
+    engOnShift: '~',
+    code: 192,
+  },
+  Digit1: {
+    rus: '1',
+    rusOnShift: '!',
+    eng: '1',
+    engOnShift: '!',
+    code: 49
+  },
+  Digit2: {
+    rus: '2',
+    rusOnShift: '"',
+    eng: '2',
+    engOnShift: '@',
+    code: 50
+  },
+  Digit3: {
+    rus: '3',
+    rusOnShift: '№',
+    eng: '3',
+    engOnShift: '#',
+    code: 51
+  },
+  Digit4: {
+    rus: '4',
+    rusOnShift: ';',
+    eng: '4',
+    engOnShift: '$',
+    code: 52
+  },
+  Digit5: {
+    rus: '5',
+    rusOnShift: '%',
+    eng: '5',
+    engOnShift: '%',
+    code: 53
+  },
+  Digit6: {
+    rus: '6',
+    rusOnShift: ':',
+    eng: '6',
+    engOnShift: '^',
+    code: 54
+  },
+  Digit7: {
+    rus: '7',
+    rusOnShift: '?',
+    eng: '7',
+    engOnShift: '&',
+    code: 55
+  },
+  Digit8: {
+    rus: '8',
+    rusOnShift: '*',
+    eng: '8',
+    engOnShift: '*',
+    code: 56
+  },
+  Digit9: {
+    rus: '9',
+    rusOnShift: '(',
+    eng: '9',
+    engOnShift: '(',
+    code: 57
+  },
+  Digit0: {
+    rus: '0',
+    rusOnShift: ')',
+    eng: '0',
+    engOnShift: ')',
+    code: 48
+  },
+  Minus: {
+    rus: '-',
+    rusOnShift: '_',
+    eng: '-',
+    engOnShift: '_',
+    code: 173
+  },
+  Equal: {
+    rus: '=',
+    rusOnShift: '+',
+    eng: '=',
+    engOnShift: '+',
+    code: 61
+  },
+  Backspace: {
+    rus: 'Backspace',
+    rusOnShift: 'Backspace',
+    eng: 'Backspace',
+    engOnShift: 'Backspace',
+    code: 8,
+    type: 'service'
+  },
+  Tab: {
+    rus: 'Tab',
+    rusOnShift: 'Tab',
+    eng: 'Tab',
+    engOnShift: 'Tab',
+    code: 9,
+    type: 'service'
+  },
+  KeyQ: {
+    rus: 'й',
+    rusOnShift: 'Й',
+    eng: 'q',
+    engOnShift: 'Q',
+    code: 81
+  },
+  KeyW: {
+    rus: 'ц',
+    rusOnShift: 'Ц',
+    eng: 'w',
+    engOnShift: 'W',
+    code: 87
+  },
+  KeyE: {
+    rus: 'у',
+    rusOnShift: 'У',
+    eng: 'e',
+    engOnShift: 'E',
+    code: 69
+  },
+  KeyR: {
+    rus: 'к',
+    rusOnShift: 'К',
+    eng: 'r',
+    engOnShift: 'R',
+    code: 82
+  },
+  KeyT: {
+    rus: 'е',
+    rusOnShift: 'Е',
+    eng: 't',
+    engOnShift: 'T',
+    code: 84
+  },
+  KeyY: {
+    rus: 'н',
+    rusOnShift: 'Н',
+    eng: 'y',
+    engOnShift: 'Y',
+    code: 89
+  },
+  KeyU: {
+    rus: 'г',
+    rusOnShift: 'Г',
+    eng: 'u',
+    engOnShift: 'U',
+    code: 85
+  },
+  KeyI: {
+    rus: 'ш',
+    rusOnShift: 'Ш',
+    eng: 'i',
+    engOnShift: 'I',
+    code: 73
+  },
+  KeyO: {
+    rus: 'щ',
+    rusOnShift: 'Щ',
+    eng: 'o',
+    engOnShift: 'O',
+    code: 79
+  },
+  KeyP: {
+    rus: 'з',
+    rusOnShift: 'З',
+    eng: 'p',
+    engOnShift: 'P',
+    code: 80
+  },
+  BracketLeft: {
+    rus: 'х',
+    rusOnShift: 'Х',
+    eng: '[',
+    engOnShift: '{',
+    code: 219
+  },
+  BracketRight: {
+    rus: 'ъ',
+    rusOnShift: 'Ъ',
+    eng: ']',
+    engOnShift: '}',
+    code: 221
+  },
+  Backslash: {
+    rus: '\\',
+    rusOnShift: '/',
+    eng: '\\',
+    engOnShift: '|',
+    code: 220
+  },
+  Delete: {
+    rus: 'Delete',
+    rusOnShift: 'Delete',
+    eng: 'Delete',
+    engOnShift: 'Delete',
+    code: 46,
+    type: 'service'
+  },
+  CapsLock: {
+    rus: 'CapsLock',
+    rusOnShift: 'CapsLock',
+    eng: 'CapsLock',
+    engOnShift: 'CapsLock',
+    code: 20,
+    type: 'service'
+  },
+  KeyA: {
+    rus: 'ф',
+    rusOnShift: 'Ф',
+    eng: 'a',
+    engOnShift: 'A',
+    code: 65
+  },
+  KeyS: {
+    rus: 'ы',
+    rusOnShift: 'Ы',
+    eng: 's',
+    engOnShift: 'S',
+    code: 83
+  },
+  KeyD: {
+    rus: 'в',
+    rusOnShift: 'В',
+    eng: 'd',
+    engOnShift: 'D',
+    code: 68
+  },
+  KeyF: {
+    rus: 'а',
+    rusOnShift: 'А',
+    eng: 'f',
+    engOnShift: 'F',
+    code: 70
+  },
+  KeyG: {
+    rus: 'п',
+    rusOnShift: 'П',
+    eng: 'g',
+    engOnShift: 'G',
+    code: 71
+  },
+  KeyH: {
+    rus: 'р',
+    rusOnShift: 'Р',
+    eng: 'h',
+    engOnShift: 'H',
+    code: 72
+  },
+  KeyJ: {
+    rus: 'о',
+    rusOnShift: 'О',
+    eng: 'j',
+    engOnShift: 'J',
+    code: 74
+  },
+  KeyK: {
+    rus: 'л',
+    rusOnShift: 'Л',
+    eng: 'k',
+    engOnShift: 'K',
+    code: 75
+  },
+  KeyL: {
+    rus: 'д',
+    rusOnShift: 'Д',
+    eng: 'l',
+    engOnShift: 'L',
+    code: 76
+  },
+  Semicolon: {
+    rus: 'ж',
+    rusOnShift: 'Ж',
+    eng: ';',
+    engOnShift: ':',
+    code: 186
+  },
+  Quote: {
+    rus: 'э',
+    rusOnShift: 'Э',
+    eng: '\'',
+    engOnShift: '"',
+    code: 222
+  },
+  Enter: {
+    rus: 'Enter',
+    rusOnShift: 'Enter',
+    eng: 'Enter',
+    engOnShift: 'Enter',
+    code: 13,
+    type: 'service'
+  },
+  ShiftLeft: {
+    rus: 'Shift',
+    rusOnShift: 'Shift',
+    eng: 'Shift',
+    engOnShift: 'Shift',
+    code: 16,
+    type: 'service'
+  },
+  KeyZ: {
+    rus: 'я',
+    rusOnShift: 'Я',
+    eng: 'z',
+    engOnShift: 'Z',
+    code: 90
+  },
+  KeyX: {
+    rus: 'ч',
+    rusOnShift: 'Ч',
+    eng: 'x',
+    engOnShift: 'X',
+    code: 88
+  },
+  KeyC: {
+    rus: 'с',
+    rusOnShift: 'С',
+    eng: 'c',
+    engOnShift: 'C',
+    code: 67
+  },
+  KeyV: {
+    rus: 'м',
+    rusOnShift: 'М',
+    eng: 'v',
+    engOnShift: 'V',
+    code: 86
+  },
+  KeyB: {
+    rus: 'и',
+    rusOnShift: 'И',
+    eng: 'b',
+    engOnShift: 'B',
+    code: 66
+  },
+  KeyN: {
+    rus: 'ь',
+    rusOnShift: 'Ь',
+    eng: 'n',
+    engOnShift: 'N',
+    code: 78
+  },
+  KeyM: {
+    rus: 'т',
+    rusOnShift: 'Т',
+    eng: 'm',
+    engOnShift: 'M',
+    code: 77
+  },
+  Comma: {
+    rus: 'б',
+    rusOnShift: 'Б',
+    eng: ',',
+    engOnShift: '<',
+    code: 188
+  },
+  Period: {
+    rus: 'ю',
+    rusOnShift: 'Ю',
+    eng: '.',
+    engOnShift: '>',
+    code: 190
+  },
+  Slash: {
+    rus: '.',
+    rusOnShift: ',',
+    eng: '/',
+    engOnShift: '?',
+    code: 191
+  },
+  ArrowUp: {
+    rus: '▲',
+    rusOnShift: '▲',
+    eng: '▲',
+    engOnShift: '▲',
+    code: 38,
+    type: 'notService'
+  },
+  ShiftRight: {
+    rus: 'Shift',
+    rusOnShift: 'Shift',
+    eng: 'Shift',
+    engOnShift: 'Shift',
+    code: 16,
+    type: 'service'
+  },
+  ControlLeft: {
+    rus: 'Ctrl',
+    rusOnShift: 'Ctrl',
+    eng: 'Ctrl',
+    engOnShift: 'Ctrl',
+    code: 17,
+    type: 'service'
+  },
+  OSLeft: {
+    rus: 'Win',
+    rusOnShift: 'Win',
+    eng: 'Win',
+    engOnShift: 'Win',
+    code: 91,
+    type: 'notService'
+  },
+  AltLeft: {
+    rus: 'Alt',
+    rusOnShift: 'Alt',
+    eng: 'Alt',
+    engOnShift: 'Alt',
+    code: 18,
+    type: 'notService'
+  },
+  Space: {
+    rus: ' ',
+    rusOnShift: ' ',
+    eng: ' ',
+    engOnShift: ' ',
+    code: 32,
+    type: 'space'
+  },
+  AltRight: {
+    rus: 'Alt',
+    rusOnShift: 'Alt',
+    eng: 'Alt',
+    engOnShift: 'Alt',
+    code: 18,
+    type: 'notService'
+  },
+  ArrowLeft: {
+    rus: '◄',
+    rusOnShift: '◄',
+    eng: '◄',
+    engOnShift: '◄',
+    code: 37,
+    type: 'notService'
+  },
+  ArrowDown: {
+    rus: '▼',
+    rusOnShift: '▼',
+    eng: '▼',
+    engOnShift: '▼',
+    code: 40,
+    type: 'notService'
+  },
+  ArrowRight: {
+    rus: '►',
+    rusOnShift: '►',
+    eng: '►',
+    engOnShift: '►',
+    code: 38,
+    type: 'notService'
+  },
+  ControlRight: {
+    rus: 'Ctrl',
+    rusOnShift: 'Ctrl',
+    eng: 'Ctrl',
+    engOnShift: 'Ctrl',
+    code: 17,
+    type: 'notService'
+  }
+};
 
-let capsLock = 0;
+let capsLock = false;
 
 const wrapper = document.createElement('div');
 wrapper.classList.add('wrapper');
@@ -16,16 +480,7 @@ const textarea = document.createElement('textarea');
 textarea.classList.add('text-input');
 text.appendChild(textarea);
 wrapper.appendChild(text);
-
-function getCode(symbol) {
-  const arr = keyboardDictionary.filter((e) => {
-    if (e[0] === String(symbol)) {
-      return true;
-    }
-    return false;
-  });
-  return arr[0][1];
-}
+document.querySelector('body').appendChild(wrapper);
 
 function deleteKeyboard() {
   const keyboard = document.querySelector('.keyboard');
@@ -36,62 +491,38 @@ function deleteKeyboard() {
 
 let generateWithLocalStorage;
 
-function generateKeyboard(keyboardRows, onShift) {
+const generateKeyboard = (onShift, language) => {
   const keyboard = document.createElement('div');
   keyboard.classList.add('keyboard');
-  keyboardRows.forEach((rows) => {
+  keyboardRows.forEach((row) => {
     const keyboardRow = document.createElement('div');
     keyboardRow.classList.add('keyboard__row');
-    const retryButtons = {
-      shift: 0,
-      ctrl: 0,
-      alt: 0,
-    };
-    rows.forEach((letter) => {
-      const button = document.createElement('div');
-      button.classList.add('button');
-      if (Array.isArray(letter)) {
-        button.classList.add('button_double');
-        button.classList.add(`k${getCode(letter[0])}`);
-        if (onShift) {
-          button.innerHTML += letter[1];
-        } else {
-          button.innerHTML += letter[0];
-        }
-      } else if (letter.length !== 1) {
-        if (serviceKeys.includes(letter)) {
-          if (!(letter === 'Ctrl' && retryButtons.ctrl === 1)) {
-            button.classList.add('button_big');
-          }
-        }
-        button.classList.add('button_darken');
-      } else if (letter.length === 1 && letter === ' ') {
-        button.classList.add('button_space');
+    row.forEach((button) => { 
+      const keyboardButton = document.createElement('div');
+      keyboardButton.classList.add('button', `k${dictionary[button].code}`);
+      switch (dictionary[button].type) {
+        case 'service':
+          keyboardButton.classList.add('button_big', 'button_darken');
+          break;
+        case 'notService':
+          keyboardButton.classList.add('button_darken');
+          break;
+        case 'space':
+          keyboardButton.classList.add('button_space');
+          break;
+        default:
+          break;
       }
-      if (!Array.isArray(letter)) {
-        button.classList.add(`k${getCode(letter)}`);
-        if (onShift && letter.length === 1) {
-          button.innerText = letter.toUpperCase();
-        } else {
-          button.innerText = letter;
-        }
+      if (onShift) {
+        keyboardButton.innerText = dictionary[button][language + 'OnShift']
+      } else {
+        keyboardButton.innerText = dictionary[button][language]
       }
-      if (letter === 'Shift' && retryButtons.shift === 0) {
-        button.classList.add('left');
-        retryButtons.shift = 1;
-      } else if (letter === 'Ctrl' && retryButtons.ctrl === 0) {
-        button.classList.add('left');
-        retryButtons.ctrl = 1;
-      } else if (letter === 'Alt' && retryButtons.alt === 0) {
-        button.classList.add('left');
-        retryButtons.alt = 1;
-      }
-      keyboardRow.appendChild(button);
-    });
+      keyboardRow.appendChild(keyboardButton);
+    })
     keyboard.appendChild(keyboardRow);
-  });
-  wrapper.appendChild(keyboard);
-  document.querySelector('body').appendChild(wrapper);
+  })
+  document.querySelector('.wrapper').appendChild(keyboard);
   function buttonMouseDown(buttonEvent) {
     buttonEvent.classList.add('button_active');
   }
@@ -136,13 +567,13 @@ function generateKeyboard(keyboardRows, onShift) {
           break;
         }
         case 'Caps Lock': {
-          if (capsLock === 0) {
+          if (capsLock === false) {
             generateWithLocalStorage(true);
-            capsLock = 1;
+            capsLock = true;
             document.querySelector('.k20').classList.add('button_active');
           } else {
             generateWithLocalStorage(false);
-            capsLock = 0;
+            capsLock = false;
           }
           break;
         }
@@ -176,12 +607,12 @@ function generateKeyboard(keyboardRows, onShift) {
   });
 }
 
-generateWithLocalStorage = (shift) => {
+generateWithLocalStorage = () => {
   deleteKeyboard();
   if (localStorage.getItem('language') === 'ru') {
-    generateKeyboard(keyboardRowsRu, shift);
+    generateKeyboard(capsLock, 'rus');
   } else {
-    generateKeyboard(keyboardRowsEn, shift);
+    generateKeyboard(capsLock, 'eng');
   }
 };
 
@@ -194,7 +625,7 @@ body.addEventListener('keydown', (key) => {
   const backspaceButton = 8;
   switch (key.which) {
     case shiftButton: {
-      if (capsLock === 0) {
+      if (capsLock === false) {
         generateWithLocalStorage(true);
       }
       break;
@@ -226,7 +657,7 @@ body.addEventListener('keyup', (key) => {
     } else {
       localStorage.setItem('language', 'ru');
     }
-    if (capsLock === 1) {
+    if (capsLock === true) {
       generateWithLocalStorage(true);
     } else {
       generateWithLocalStorage(false);
@@ -237,7 +668,7 @@ body.addEventListener('keyup', (key) => {
     while (pushedButtons.indexOf('AltLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
-  } else if (key.which === 16 && capsLock === 0) {
+  } else if (key.which === 16 && capsLock === false) {
     generateWithLocalStorage(false);
   }
   while (pushedButtons.indexOf(key.code) !== -1) {
@@ -245,4 +676,4 @@ body.addEventListener('keyup', (key) => {
   }
 });
 
-generateWithLocalStorage(false);
+generateWithLocalStorage();
