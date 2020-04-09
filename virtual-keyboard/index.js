@@ -266,7 +266,7 @@ const generateKeyboard = (onShift, language) => {
     keyboard.appendChild(keyboardRow);
   });
   document.querySelector('.wrapper').appendChild(keyboard);
-}
+};
 
 const createKeyboard = (shift) => {
   deleteKeyboard();
@@ -326,17 +326,17 @@ function handleSpecialButtons(key) {
   }
 }
 
-const isLanguageShouldBeChanged = (key) => {
+const isLanguageShouldBeChanged = () => {
   const pressedButtonsForChangeLanguage = document.querySelectorAll('.k16.button_active, .k18.button_active');
-  return pressedButtonsForChangeLanguage.length >= 2 ? true : false;
+  return pressedButtonsForChangeLanguage.length >= 2;
 };
 const isCaseShouldBeLower = (key) => key.key === 'Shift' && !isCapsLock;
 const isKeyServiceRightButton = (key) => key.code === 'ShiftRight' || key.code === 'ControlRight' || key.code === 'AltRight';
 
 function makeButtonActive(key) {
   const selectedButton = isKeyServiceRightButton(key)
-  ? document.querySelector(`.k${key.which}:not(.left)`)
-  : document.querySelector(`.k${key.which}`);
+    ? document.querySelector(`.k${key.which}:not(.left)`)
+    : document.querySelector(`.k${key.which}`);
   selectedButton.classList.add('button_active');
   selectedButton.click();
 }
@@ -345,7 +345,7 @@ function makeButtonInactive(key) {
   const selectedButton = document.querySelectorAll(`.k${key.which}`);
   selectedButton.forEach((element) => {
     element.classList.remove('button_active');
-  })
+  });
 }
 
 function changeLanguage() {
@@ -376,12 +376,13 @@ function onKeyDown(key) {
       break;
     case dictionary.Backspace.code:
       document.querySelector('.k8').click();
+      break;
     default:
       break;
   }
   makeButtonActive(key);
 }
-var i = 0;
+
 function onButtonClick(buttonEvent) {
   const targetButton = buttonEvent.target;
   const buttonText = targetButton.innerText;
@@ -404,8 +405,8 @@ function onMouseUp(buttonEvent) {
 function delegationEvent(key, event) {
   const { target } = key;
   if (!target.classList.contains('button')) {
-    return
-  };
+    return;
+  }
   switch (event) {
     case 'mousedown':
       onMouseDown(key);
@@ -416,13 +417,15 @@ function delegationEvent(key, event) {
     case 'click':
       onButtonClick(key);
       break;
+    default:
+      break;
   }
 }
 
-document.addEventListener('keyup', (e) => {onKeyUp(e)});
-document.addEventListener('keydown', (e) => {onKeyDown(e)});
-document.addEventListener('mousedown', (e) => {delegationEvent(e, 'mousedown')});
-document.addEventListener('mouseup', (e) => {delegationEvent(e, 'mouseup')});
-document.addEventListener('click', (e) => {delegationEvent(e, 'click')});
+document.addEventListener('keyup', (e) => { onKeyUp(e); });
+document.addEventListener('keydown', (e) => { onKeyDown(e); });
+document.addEventListener('mousedown', (e) => { delegationEvent(e, 'mousedown'); });
+document.addEventListener('mouseup', (e) => { delegationEvent(e, 'mouseup'); });
+document.addEventListener('click', (e) => { delegationEvent(e, 'click'); });
 
 createKeyboard();
