@@ -330,28 +330,22 @@ const generateKeyboard = (onShift, language) => {
     textarea.focus();
   }
   keyboard.addEventListener('mousedown', (mouse) => {
-    const {
-      target,
-    } = mouse;
-    if (target.tagName !== 'DIV') {
+    const { target } = mouse;
+    if (!target.classList.contains('button')) {
       return;
     }
     buttonMouseDown(target);
   });
   keyboard.addEventListener('mouseup', (mouse) => {
-    const {
-      target,
-    } = mouse;
-    if (target.tagName !== 'DIV') {
+    const { target } = mouse;
+    if (!target.classList.contains('button')) {
       return;
     }
     buttonMouseUp(target);
   });
   keyboard.addEventListener('click', (mouse) => {
-    const {
-      target,
-    } = mouse;
-    if (target.tagName !== 'DIV') {
+    const { target } = mouse;
+    if (!target.classList.contains('button')) {
       return;
     }
     buttonMouseClick(target);
