@@ -291,12 +291,14 @@ function handleSpecialButtons(key) {
       break;
     }
     case 'Delete': {
-      const {
-        value,
-      } = textarea;
+      const { value } = textarea;
       textarea.value = value.slice(0, selection) + value.slice(selection + 1, value.length);
       textarea.selectionStart = selection;
       textarea.selectionEnd = selection;
+      break;
+    }
+    case 'Tab': {
+      textarea.value += '    ';
       break;
     }
     case '◄': {
