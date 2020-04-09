@@ -279,7 +279,7 @@ function handleSpecialButtons(key) {
   const selection = textarea.selectionStart;
   switch (key) {
     case '': {
-      texInput.value += ' ';
+      textarea.value += ' ';
       break;
     }
     case 'Backspace': {
@@ -354,7 +354,7 @@ function changeLanguage() {
 }
 
 function onKeyUp(key) {
-  // key.target.preventDefault();
+  key.preventDefault();
   makeButtonInactive(key);
   if (isLanguageShouldBeChanged(key)) {
     changeLanguage();
@@ -365,8 +365,7 @@ function onKeyUp(key) {
 }
 
 function onKeyDown(key) {
-  // key.target.preventDefault();
-  console.log('1');
+  key.preventDefault();
   switch (key.which) {
     case dictionary.ShiftLeft.code:
     case dictionary.ShiftRight.code:
@@ -379,7 +378,7 @@ function onKeyDown(key) {
   }
   makeButtonActive(key);
 }
-
+var i = 0;
 function onButtonClick(buttonEvent) {
   const targetButton = buttonEvent.target;
   const buttonText = targetButton.innerText;
@@ -408,6 +407,7 @@ document.addEventListener('mousedown', (e) => {
 document.addEventListener('mouseup', (e) => {
   onMouseUp(e)});
 document.addEventListener('click', (e) => {
-  onButtonClick(e)});
+    onButtonClick(e);
+});
 
 createKeyboard();
