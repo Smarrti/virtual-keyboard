@@ -401,11 +401,28 @@ function onMouseUp(buttonEvent) {
   buttonEvent.target.classList.remove('button_active');
 }
 
+function delegationEvent(key, event) {
+  const { target } = key;
+  if (!target.classList.contains('button')) {
+    return
+  };
+  switch (event) {
+    case 'mousedown':
+      onMouseDown(key);
+      break;
+    case 'mouseup':
+      onMouseUp(key);
+      break;
+    case 'click':
+      onButtonClick(key);
+      break;
+  }
+}
+
 document.addEventListener('keyup', (e) => {onKeyUp(e)});
 document.addEventListener('keydown', (e) => {onKeyDown(e)});
-document.addEventListener('mousedown', (e) => {onMouseDown(e)});
-document.addEventListener('mouseup', (e) => {onMouseUp(e)});
-document.addEventListener('click', (e) => {onButtonClick(e);
-});
+document.addEventListener('mousedown', (e) => {delegationEvent(e, 'mousedown')});
+document.addEventListener('mouseup', (e) => {delegationEvent(e, 'mouseup')});
+document.addEventListener('click', (e) => {delegationEvent(e, 'click')});
 
 createKeyboard();
