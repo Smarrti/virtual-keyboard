@@ -48,7 +48,7 @@ const dictionary = {
   Backspace: {
     rus: 'Backspace', rusOnShift: 'Backspace', eng: 'Backspace', engOnShift: 'Backspace', code: 8, type: 'service',
   },
-  Ta1b: {
+  Tab: {
     rus: 'Tab', rusOnShift: 'Tab', eng: 'Tab', engOnShift: 'Tab', code: 9, type: 'service',
   },
   KeyQ: {
@@ -200,24 +200,28 @@ const dictionary = {
   },
 };
 
-let capsLock = false;
+const instructionText = 'Виртуальная клавиатура разрабатывалась под Windows OS\nДля переключения языка используйте сочетание клавиш Shift + Alt';
+
+let isCapsLock = false;
 
 const wrapper = document.createElement('div');
-wrapper.classList.add('wrapper');
 const instruction = document.createElement('p');
-instruction.innerText = 'Виртуальная клавиатура разрабатывалась под Windows OS\nДля переключения языка используйте сочетание клавиш Shift + Alt';
-wrapper.appendChild(instruction);
+instruction.innerText = instructionText;
 const text = document.createElement('div');
-text.classList.add('text');
 const textarea = document.createElement('textarea');
+
+wrapper.classList.add('wrapper');
+text.classList.add('text');
 textarea.classList.add('text-input');
+
+wrapper.appendChild(instruction);
 text.appendChild(textarea);
 wrapper.appendChild(text);
 document.querySelector('body').appendChild(wrapper);
 
 function deleteKeyboard() {
   const keyboard = document.querySelector('.keyboard');
-  if (keyboard !== null) {
+  if (keyboard) {
     wrapper.removeChild(keyboard);
   }
 }
@@ -309,12 +313,12 @@ const generateKeyboard = (onShift, language) => {
         }
         case 'Caps Lock': {
           document.querySelector('.k20').classList.add('button_active');
-          if (capsLock === false) {
-            capsLock = true;
-            generateWithLocalStorage(capsLock);
+          if (isCapsLock) {
+            isCapsLock = false;
+            generateWithLocalStorage(isCapsLock);
           } else {
-            capsLock = false;
-            generateWithLocalStorage(capsLock);
+            isCapsLock = true;
+            generateWithLocalStorage(isCapsLock);
           }
           break;
         }
@@ -357,9 +361,9 @@ const generateKeyboard = (onShift, language) => {
 generateWithLocalStorage = (shift) => {
   deleteKeyboard();
   if (localStorage.getItem('language') === 'ru') {
-    generateKeyboard(capsLock || shift, 'rus');
+    generateKeyboard(isCapsLock || shift, 'rus');
   } else {
-    generateKeyboard(capsLock || shift, 'eng');
+    generateKeyboard(isCapsLock || shift, 'eng');
   }
 };
 
@@ -372,7 +376,7 @@ body.addEventListener('keydown', (key) => {
   const backspaceButton = 8;
   switch (key.which) {
     case shiftButton: {
-      if (capsLock === false) {
+      if (isCapsLock === false) {
         generateWithLocalStorage(true);
       }
       break;
@@ -404,7 +408,7 @@ body.addEventListener('keyup', (key) => {
     } else {
       localStorage.setItem('language', 'ru');
     }
-    if (capsLock === true) {
+    if (isCapsLock) {
       generateWithLocalStorage(true);
     } else {
       generateWithLocalStorage(false);
@@ -415,7 +419,7 @@ body.addEventListener('keyup', (key) => {
     while (pushedButtons.indexOf('AltLeft') !== -1) {
       pushedButtons.splice(pushedButtons.indexOf('AltLeft'), 1);
     }
-  } else if (key.which === 16 && capsLock === false) {
+  } else if (key.which === 16 && isCapsLock === false) {
     generateWithLocalStorage(false);
   }
   while (pushedButtons.indexOf(key.code) !== -1) {
