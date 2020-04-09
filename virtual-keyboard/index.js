@@ -313,10 +313,10 @@ function handleSpecialButtons(key) {
       document.querySelector('.k20').classList.add('button_active');
       if (isCapsLock) {
         isCapsLock = false;
-        generateWithLocalStorage(isCapsLock);
+        createKeyboard(isCapsLock);
       } else {
         isCapsLock = true;
-        generateWithLocalStorage(isCapsLock);
+        createKeyboard(isCapsLock);
       }
       break;
     }
@@ -326,7 +326,10 @@ function handleSpecialButtons(key) {
   }
 }
 
-const isLanguageShouldBeChanged = (key) => key.code === 'ShiftLeft' && key.code === 'AltLeft';
+const isLanguageShouldBeChanged = (key) => {
+  const pressedButtonsForChangeLanguage = document.querySelectorAll('.k16.button_active, .k18.button_active');
+  return pressedButtonsForChangeLanguage.length >= 2 ? true : false;
+};
 const isCaseShouldBeLower = (key) => key.key === 'Shift' && !isCapsLock;
 const isKeyServiceRightButton = (key) => key.code === 'ShiftRight' || key.code === 'ControlRight' || key.code === 'AltRight';
 
@@ -355,13 +358,13 @@ function changeLanguage() {
 
 function onKeyUp(key) {
   key.preventDefault();
-  makeButtonInactive(key);
   if (isLanguageShouldBeChanged(key)) {
     changeLanguage();
     createKeyboard(false);
   } else if (isCaseShouldBeLower(key)) {
     createKeyboard(false);
   }
+  makeButtonInactive(key);
 }
 
 function onKeyDown(key) {
@@ -369,7 +372,7 @@ function onKeyDown(key) {
   switch (key.which) {
     case dictionary.ShiftLeft.code:
     case dictionary.ShiftRight.code:
-      if (isCapsLock) createKeyboard(true);
+      if (!isCapsLock) createKeyboard(true);
       break;
     case dictionary.Backspace.code:
       document.querySelector('.k8').click();
@@ -398,16 +401,11 @@ function onMouseUp(buttonEvent) {
   buttonEvent.target.classList.remove('button_active');
 }
 
-document.addEventListener('keyup', (e) => {
-  onKeyUp(e)});
-document.addEventListener('keydown', (e) => {
-  onKeyDown(e)});
-document.addEventListener('mousedown', (e) => {
-  onMouseDown(e)});
-document.addEventListener('mouseup', (e) => {
-  onMouseUp(e)});
-document.addEventListener('click', (e) => {
-    onButtonClick(e);
+document.addEventListener('keyup', (e) => {onKeyUp(e)});
+document.addEventListener('keydown', (e) => {onKeyDown(e)});
+document.addEventListener('mousedown', (e) => {onMouseDown(e)});
+document.addEventListener('mouseup', (e) => {onMouseUp(e)});
+document.addEventListener('click', (e) => {onButtonClick(e);
 });
 
 createKeyboard();
