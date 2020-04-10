@@ -230,7 +230,7 @@ function deleteKeyboard() {
   }
 }
 
-const generateKeyboard = (onShift, language) => {
+const generateKeyboard = (toUpper, language) => {
   const keyboard = document.createElement('div');
   keyboard.classList.add('keyboard');
 
@@ -256,10 +256,22 @@ const generateKeyboard = (onShift, language) => {
       if (button === 'ShiftLeft' || button === 'ControlLeft' || button === 'AltLeft') {
         keyboardButton.classList.add('left');
       }
-      if (onShift) {
-        keyboardButton.innerText = dictionary[button][`${language}OnShift`];
-      } else {
-        keyboardButton.innerText = dictionary[button][language];
+      switch (toUpper) {
+        case 'Shift':
+          keyboardButton.innerText = dictionary[button][`${language}OnShift`];
+          break;
+        case true:
+          if (button.indexOf('Digit') !== -1) {
+            keyboardButton.innerText = dictionary[button][language];
+          } else {
+            keyboardButton.innerText = dictionary[button][`${language}OnShift`];
+          }
+        break;
+        case false:
+        case undefined:
+          keyboardButton.innerText = dictionary[button][`${language}`];
+        default:
+          break;
       }
       keyboardRow.appendChild(keyboardButton);
     });
@@ -371,7 +383,7 @@ function onKeyUp(key) {
   } else if (isCaseShouldBeLower(key)) {
     createKeyboard(false);
   } else if (isCaseShouldBeUpper(key)) {
-    createKeyboard(true);
+    createKeyboard('CapsLock');
   }
   makeButtonInactive(key);
 }
@@ -382,7 +394,7 @@ function onKeyDown(key) {
     case dictionary.ShiftLeft.code:
     case dictionary.ShiftRight.code:
       if (!isCapsLock) {
-        createKeyboard(true);
+        createKeyboard('Shift');
       } else {
         createKeyboard(false);
       }
