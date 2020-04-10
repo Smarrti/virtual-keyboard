@@ -270,7 +270,11 @@ const generateKeyboard = (onShift, language) => {
 
 const createKeyboard = (shift) => {
   deleteKeyboard();
-  generateKeyboard(isCapsLock || shift, getLanguage() || 'rus');
+  if (isCapsLock && !shift) {
+    generateKeyboard(false, getLanguage() || 'rus');
+  } else {
+    generateKeyboard(isCapsLock || shift, getLanguage() || 'rus');
+  }
 };
 
 const isValueShouldBeAddToText = (value) => value.length === 1 && value !== '◄' && value !== '►';
@@ -333,6 +337,7 @@ const isLanguageShouldBeChanged = () => {
   return pressedButtonsForChangeLanguage.length >= 2;
 };
 const isCaseShouldBeLower = (key) => key.key === 'Shift' && !isCapsLock;
+const isCaseShouldBeUpper = (key) => key.key === 'Shift' && isCapsLock;
 const isKeyServiceRightButton = (key) => key.code === 'ShiftRight' || key.code === 'ControlRight' || key.code === 'AltRight';
 
 function makeButtonActive(key) {
@@ -365,6 +370,8 @@ function onKeyUp(key) {
     createKeyboard(false);
   } else if (isCaseShouldBeLower(key)) {
     createKeyboard(false);
+  } else if (isCaseShouldBeUpper(key)) {
+    createKeyboard(true);
   }
   makeButtonInactive(key);
 }
@@ -374,7 +381,11 @@ function onKeyDown(key) {
   switch (key.which) {
     case dictionary.ShiftLeft.code:
     case dictionary.ShiftRight.code:
-      if (!isCapsLock) createKeyboard(true);
+      if (!isCapsLock) {
+        createKeyboard(true);
+      } else {
+        createKeyboard(false);
+      }
       break;
     case dictionary.Backspace.code:
       document.querySelector('.k8').click();
