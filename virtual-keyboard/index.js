@@ -391,7 +391,7 @@ function onKeyUp(key) {
   } else if (isCaseShouldBeLower(key)) {
     createKeyboard(false);
   } else if (isCaseShouldBeUpper(key)) {
-    createKeyboard('Shift');
+    createKeyboard(true);
   }
   makeButtonInactive(key);
 }
