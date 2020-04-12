@@ -200,13 +200,14 @@ const dictionary = {
   },
 };
 
-const instructionText = 'Виртуальная клавиатура разрабатывалась под Windows OS\nДля переключения языка используйте сочетание клавиш Shift + Alt';
+const instructionTextOS = 'Виртуальная клавиатура разрабатывалась под Windows OS\n';
+const instructionTextLanguage = 'Для переключения языка используйте сочетание клавиш Shift + Alt'
 
 let isCapsLock = false;
 
 const wrapper = document.createElement('div');
 const instruction = document.createElement('p');
-instruction.innerText = instructionText;
+instruction.innerText = instructionTextOS + instructionTextLanguage;
 const text = document.createElement('div');
 const textarea = document.createElement('textarea');
 
@@ -267,6 +268,13 @@ const generateKeyboard = (toUpper, language) => {
             keyboardButton.innerText = dictionary[button][`${language}OnShift`];
           }
         break;
+        case 'downAndShift':
+          if (button.indexOf('Digit') !== -1) {
+            keyboardButton.innerText = dictionary[button][`${language}OnShift`];
+          } else {
+            keyboardButton.innerText = dictionary[button][language];
+          }
+          break;
         case false:
         case undefined:
           keyboardButton.innerText = dictionary[button][`${language}`];
@@ -285,7 +293,7 @@ const createKeyboard = (shift) => {
   if (isCapsLock && !shift) {
     generateKeyboard(false, getLanguage() || 'rus');
   } else {
-    generateKeyboard(isCapsLock || shift, getLanguage() || 'rus');
+    generateKeyboard(shift || isCapsLock, getLanguage() || 'rus');
   }
 };
 
@@ -383,7 +391,7 @@ function onKeyUp(key) {
   } else if (isCaseShouldBeLower(key)) {
     createKeyboard(false);
   } else if (isCaseShouldBeUpper(key)) {
-    createKeyboard('CapsLock');
+    createKeyboard('Shift');
   }
   makeButtonInactive(key);
 }
@@ -396,7 +404,7 @@ function onKeyDown(key) {
       if (!isCapsLock) {
         createKeyboard('Shift');
       } else {
-        createKeyboard(false);
+        createKeyboard('downAndShift');
       }
       break;
     case dictionary.Backspace.code:
